@@ -153,20 +153,18 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
         spring=${SPRING_APPS_SERVICE}
     ```
 
-2. Retrieve the resource ID for the recently create Azure Spring Apps Service and Log Analytics Workspace.
+2. Retrieve the resource ID for the recently create Azure Spring Apps Service and Log Analytics Workspace and note it down in a notepad.
 
     ```shell
-    export LOG_ANALYTICS_RESOURCE_ID=$(az monitor log-analytics workspace show \
-        --resource-group ${RESOURCE_GROUP} \
-        --workspace-name ${LOG_ANALYTICS_WORKSPACE} \
-        --query id \
-        -o tsv)
-    
-    export SPRING_APPS_RESOURCE_ID=$(az spring show \
-        --name ${SPRING_APPS_SERVICE} \
-        --resource-group ${RESOURCE_GROUP} \
-        --query id \
-        -o tsv)
+    az spring show \
+        --name azure-spring-apps-1573570 \
+        --resource-group Modernize-java-apps \
+        --query id --output tsv
+
+    az monitor log-analytics workspace show \
+        --resource-group Modernize-java-apps \
+        --workspace-name azure-spring-apps-1573570 \
+        --query id --output tsv
     ```
 
    > **Note:** If you face any error while running the above command, please log in to azure and check the log analytics workspace name in resource group and replace the name in **setup-env-variables.sh** file.
