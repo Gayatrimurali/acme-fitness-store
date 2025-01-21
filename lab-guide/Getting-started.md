@@ -17,12 +17,13 @@ In this lab, you will learn how to build and deploy both frontend and backend Sp
 - Automate from idea to production
 - Infuse AI into Fitness Store
 
+## Pre-requisites
 
 ## Architecture Diagram
 
 ![acme-fitness](Images/java1.png)
 
-## Pre-requisites
+
 
 # Getting Started with Lab
 
