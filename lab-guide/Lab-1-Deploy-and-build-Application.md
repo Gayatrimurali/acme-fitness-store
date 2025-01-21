@@ -1,4 +1,4 @@
-## Lab 1:  Deploy and Build Applications
+# Lab 1:  Deploy and Build Applications
 
 ### Estimated Duration: 40 minutes
 
