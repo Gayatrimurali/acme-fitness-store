@@ -1,6 +1,6 @@
 ## Lab 1:  Deploy and Build Applications
 
-Duration: 40 minutes
+### Estimated Duration: 40 minutes
 
 In this lab, you will learn how to build and deploy both frontend and backend Spring applications to Azure Spring Apps. In order to develop a high-level grasp of how to deploy and operate the same, you will first attempt to set up a very basic hello-world Spring Boot app. After that, you will configure Spring Cloud Gateway, deploy the frontend and backend apps of ACME-FITNESS (the demo application you will use in this lab), and verify that you can access the frontend as well as the backend. Additionally, you will change the Spring Cloud Gateway rules for these backend apps and set them up to communicate with the Application Configuration Service and the Service Registry.
 
@@ -17,237 +17,247 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
 
      ![](Images/gitbash.png)                          
 
-3. Once the Git Bash is open, please continue with the next step.
+3. Once the Git Bash is open, run the following command to remove previous versions and install the latest Azure Spring Apps Enterprise tier extension.
 
-4. Run the following command to remove previous versions and install the latest Azure Spring Apps Enterprise tier extension.
-
-```shell
-  az extension add --name spring
-```
+    ```shell
+      az extension add --name spring
+    ```
     
-5. To change the directory to the sample app repository in your shell, run the following command in the Bash shell pane.
+4. To change the directory to the sample app repository in your shell, run the following command in the Bash shell pane.
 
-```shell
-  cd source-code/acme-fitness-store-v2/azure-spring-apps-enterprise/scripts
-```
+    ```shell
+      cd source-code/acme-fitness-store-v2/azure-spring-apps-enterprise/scripts
+    ```
     
-6. Run the following command to create a bash script with environment variables by making a copy of the supplied template.
+5. Run the following command to create a bash script with environment variables by making a copy of the supplied template.
 
-```shell
-  cp ./setup-env-variables-template.sh ./setup-env-variables.sh
-```
+    ```shell
+      cp ./setup-env-variables-template.sh ./setup-env-variables.sh
+    ```
 
-7. To open the `./scripts/setup-env-variables.sh` file, run the following command.
+6. To open the `./scripts/setup-env-variables.sh` file, run the following command.
 
-```shell
-  vi setup-env-variables.sh
-```
-   >**Note**: If you face any issues while editing the file please check at the bottom of the file if it is in edit mode or not, if not in edit mode please hit on **i** key of your keyboard to go to the edit mode. once the updates are done to save the file please do **ctrl+c** and write **:wq!**  this will save the file or if you dont want to save the file do **ctrl_c** and write **:q!**.
+    ```shell
+      vi setup-env-variables.sh
+    ```
+   >**Note**: If you face any issues while editing the file please check at the bottom of the file if it is in edit mode or not, if not in edit mode please hit on . Once the updates are done to save the file please do **ctrl+c** and write **:wq!**  this will save the file or if you dont want to save the file do **ctrl_c** and write **:q!**.
+   
 
-8. Update the following variables in the setup-env-variables.sh file by replacing the following values and **Save** it using **Ctrl+S** key and **Close** the file.
+7. Press **i** key on your keyboard to go to the edit mode and update the values by replacing it with the following values and **Save** it using **Ctrl+S** key and **Close** the file.
 
    * SubscriptionID: **<inject key="Subscription Id" enableCopy="true"/>**
+   * Resource Group: **<inject key="Resource Group Name" enableCopy="true"/>**
    * Spring App Name: **<inject key="Spring App Name" enableCopy="true"/>**
+   * Log Analytics Workspace: **<inject key="Log Analytics workspace name" enableCopy="true"/>**
+   * Region:  **<inject key="Region" enableCopy="true"/>**
 
-```shell
-  export SUBSCRIPTION=subscription-id                 # Replace it with your subscription-id 
-  export RESOURCE_GROUP=Modernize-java-apps        
-  export SPRING_APPS_SERVICE=azure-spring-apps-SUFFIX   # Replace suffix with the provided DeploymentID
-  export LOG_ANALYTICS_WORKSPACE=acme-log-analytic  
-  export REGION=eastus                          
-```
-   >**Note:** provide the values for existing RESOURCE_GROUP, new LOG_ANALYTICS_WORKSPACE and REGION.
+    ```shell
+      export SUBSCRIPTION=subscription-id                 # Replace it with your subscription-id 
+      export RESOURCE_GROUP=Modernize-java-apps        
+      export SPRING_APPS_SERVICE=azure-spring-apps-SUFFIX   # Replace suffix with the provided DeploymentID
+      export LOG_ANALYTICS_WORKSPACE=acme-log-analytic  
+      export REGION=eastus                          
+    ```
+
+8. Run the following command to log in to Azure.
+
+    ```shell
+      az login
+    ```   
    
-   ![](Images/mja-setup-env-variables.png)
+   > **Note:** Once you run the command, you will be redirected to the default browser. Enter the following:
+   > - Click on **Work or School Account**.
+   > - **Azure username:** <inject key="AzureAdUserEmail"></inject>  
+   > - **Password:** <inject key="AzureAdUserPassword"></inject> 
+   > Select **No, Sign in to this app only at stay signed in apps** popup. popup will close  automatically once successful login and proceed with the next command.
 
 9. Run the following command to move back to the acme-fitness-store directory and then set up the environment.
   
-```shell
-  chmod +x ./setup-env-variables.sh
-  source ./setup-env-variables.sh
-``` 
+    ```shell
+      chmod +x ./setup-env-variables.sh
+      source ./setup-env-variables.sh
+    ``` 
   
-10. Run the following command to log in to Azure.
-
-```shell
-  az login
-```   
-   
-   > **Note:** Once you run the command, you will be redirected to the default browser. Enter the following:
-   > - **Azure username:** <inject key="AzureAdUserEmail"></inject>  
-   > - **Password:** <inject key="AzureAdUserPassword"></inject> 
-   > 
-   > Select **No, Sign in to this app only at stay signed in apps** popup. popup will close  automatically once successful login and proceed with the next command.
-
-
-11. Run the following commands to get the list of subscriptions and to set your subscription.
+10. Run the following commands to get the list of subscriptions and to set your subscription.
 
     * Replace ${SUBSCRIPTION} with the SubscriptionID: **<inject key="Subscription Id" enableCopy="true"/>**
 
-```shell
-   az account list -o table
-   az account set --subscription ${SUBSCRIPTION}
-```  
+    ```shell
+       az account list -o table
+       az account set --subscription ${SUBSCRIPTION}
+    ```  
     
-   ![](Images/mjv2-4.png)
+       ![](Images/mjv2-4.png)
    
-12. Now, run the following command to set your default resource group name and cluster name.
+11. Now, run the following command to set your default resource group name and cluster name.
 
-```shell
-  az configure --defaults \
-  group=${RESOURCE_GROUP} \
-  location=${REGION} \
-  spring=${SPRING_APPS_SERVICE}
-```
+   * Replace $Resource Group with **<inject key="Resource Group Name" enableCopy="true"/>**
+   * Replace ${REGION} with **<inject key="Region" enableCopy="true"/>**
+   * Replace ${SPRING_APPS_SERVICE} with **<inject key="Spring App Name" enableCopy="true"/>**
+     
+    ```shell
+      az configure --defaults \
+      group=${RESOURCE_GROUP} \
+      location=${REGION} \
+      spring=${SPRING_APPS_SERVICE}
+    ```
     
    > **Note:** Make sure you are in the **scripts** directory.
+
+12. Run the following command to accept the terms:
+
+    ```shell
+    az term accept --publisher vmware-inc --product azure-spring-cloud-vmware-tanzu-2 --plan asa-ent-hr-mtr
+    ```
+
 13. Run the following command to create the instance of Azure Spring Apps Enterprise.
 
-```shell
-az spring create --name ${SPRING_APPS_SERVICE} \
-    --resource-group ${RESOURCE_GROUP} \
-    --location ${REGION} \
-    --sku Enterprise \
-    --enable-application-configuration-service \
-    --enable-service-registry \
-    --enable-gateway \
-    --enable-api-portal \
-    --enable-alv \
-    --enable-app-acc \
-    --build-pool-size S2 
-```
-   > **Note:** Creating the instance will take around **20-30** minutes.
+    ```shell
+    az spring create --name ${SPRING_APPS_SERVICE} \
+        --resource-group ${RESOURCE_GROUP} \
+        --location ${REGION} \
+        --sku Enterprise \
+        --enable-application-configuration-service \
+        --enable-service-registry \
+        --enable-gateway \
+        --enable-api-portal \
+        --enable-alv \
+        --enable-app-acc \
+        --build-pool-size S2 
+    ```
+
+       > **Note:** Creating the instance will take around **20-30** minutes.
 
 ### Task 2: Configure Log Analytics for Azure Spring Apps
 
 1. Create a Log Analytics Workspace to be used for your Azure Spring Apps service.
 
-> Note: This step can be skipped if using an existing workspace
+   * Replace $Resource Group with **<inject key="Resource Group Name" enableCopy="true"/>**
+   * Replace ${REGION} with **<inject key="Region" enableCopy="true"/>**
+   * Replace ${SPRING_APPS_SERVICE} with **<inject key="Spring App Name" enableCopy="true"/>**
 
-```shell
-az configure --defaults \
-    group=${RESOURCE_GROUP} \
-    location=${REGION} \
-    spring=${SPRING_APPS_SERVICE}
-```
+    ```shell
+    az configure --defaults \
+        group=${RESOURCE_GROUP} \
+        location=${REGION} \
+        spring=${SPRING_APPS_SERVICE}
+    ```
 
 2. Retrieve the resource ID for the recently create Azure Spring Apps Service and Log Analytics Workspace.
 
-```shell
-export LOG_ANALYTICS_RESOURCE_ID=$(az monitor log-analytics workspace show \
-    --resource-group ${RESOURCE_GROUP} \
-    --workspace-name ${LOG_ANALYTICS_WORKSPACE} \
-    --query id \
-    -o tsv)
-
-export SPRING_APPS_RESOURCE_ID=$(az spring show \
-    --name ${SPRING_APPS_SERVICE} \
-    --resource-group ${RESOURCE_GROUP} \
-    --query id \
-    -o tsv)
-```
+    ```shell
+    export LOG_ANALYTICS_RESOURCE_ID=$(az monitor log-analytics workspace show \
+        --resource-group ${RESOURCE_GROUP} \
+        --workspace-name ${LOG_ANALYTICS_WORKSPACE} \
+        --query id \
+        -o tsv)
+    
+    export SPRING_APPS_RESOURCE_ID=$(az spring show \
+        --name ${SPRING_APPS_SERVICE} \
+        --resource-group ${RESOURCE_GROUP} \
+        --query id \
+        -o tsv)
+    ```
 
    > **Note:** If you face any error while running the above command, please log in to azure and check the log analytics workspace name in resource group and replace the name in **setup-env-variables.sh** file.
 
 3. Configure diagnostic settings for the Azure Spring Apps Service.
 
-```shell
-az monitor diagnostic-settings create --name "send-logs-and-metrics-to-log-analytics" \
-    --resource ${SPRING_APPS_RESOURCE_ID} \
-    --workspace ${LOG_ANALYTICS_RESOURCE_ID} \
-    --logs '[
-         {
-           "category": "ApplicationConsole",
-           "enabled": true,
-           "retentionPolicy": {
-             "enabled": false,
-             "days": 0
-           }
-         },
-         {
-            "category": "SystemLogs",
-            "enabled": true,
-            "retentionPolicy": {
-              "enabled": false,
-              "days": 0
-            }
-          },
-         {
-            "category": "IngressLogs",
-            "enabled": true,
-            "retentionPolicy": {
-              "enabled": false,
-              "days": 0
+    ```shell
+    az monitor diagnostic-settings create --name "send-logs-and-metrics-to-log-analytics" \
+        --resource ${SPRING_APPS_RESOURCE_ID} \
+        --workspace ${LOG_ANALYTICS_RESOURCE_ID} \
+        --logs '[
+             {
+               "category": "ApplicationConsole",
+               "enabled": true,
+               "retentionPolicy": {
+                 "enabled": false,
+                 "days": 0
+               }
+             },
+             {
+                "category": "SystemLogs",
+                "enabled": true,
+                "retentionPolicy": {
+                  "enabled": false,
+                  "days": 0
+                }
+              },
+             {
+                "category": "IngressLogs",
+                "enabled": true,
+                "retentionPolicy": {
+                  "enabled": false,
+                  "days": 0
+                 }
+               }
+           ]' \
+           --metrics '[
+             {
+               "category": "AllMetrics",
+               "enabled": true,
+               "retentionPolicy": {
+                 "enabled": false,
+                 "days": 0
+               }
              }
-           }
-       ]' \
-       --metrics '[
-         {
-           "category": "AllMetrics",
-           "enabled": true,
-           "retentionPolicy": {
-             "enabled": false,
-             "days": 0
-           }
-         }
-       ]'
-```
+           ]'
+    ```
 
 > Note: For Git Bash users, this command may fail when resource IDs are misinterpreted as file paths because they begin with `/`. 
-> 
 > If the above command fails, try setting MSYS_NO_PATHCONV using:
-> 
 > `run this command on the terminal **export MSYS_NO_PATHCONV=1** and rerun the diagonstic configure command.
 
 ### Task 3: Configure Application Configuration Service
 
 1. Create a configuration repository for Application Configuration Service using the Azure CLI.
 
-```shell
-az spring application-configuration-service git repo add --name acme-fitness-store-config \
-    --label main \
-    --patterns "catalog/default,catalog/key-vault,identity/default,identity/key-vault,payment/default" \
-    --uri "https://github.com/Azure-Samples/acme-fitness-store-config"
-```
+    ```shell
+    az spring application-configuration-service git repo add --name acme-fitness-store-config \
+        --label main \
+        --patterns "catalog/default,catalog/key-vault,identity/default,identity/key-vault,payment/default" \
+        --uri "https://github.com/Azure-Samples/acme-fitness-store-config"
+    ```
 
 ### Task 4: Configure Tanzu Build Service
 
 
 1. Make sure you are operating from the ./scripts folder
 
-```shell
-pwd
-```
+    ```shell
+    pwd
+    ```
 > Should show something like:
 
-```
-./source-code/acme-fitness-store/azure-spring-apps-enterprise/scripts
-```
+    ```
+    ./source-code/acme-fitness-store/azure-spring-apps-enterprise/scripts
+    ```
 
 2. Create a custom builder in Tanzu Build Service using the Azure CLI.
 
-```shell
-az spring build-service builder create -n ${CUSTOM_BUILDER} \
-    --builder-file ../resources/json/tbs/builder.json \
-    --no-wait
-```
+    ```shell
+    az spring build-service builder create -n ${CUSTOM_BUILDER} \
+        --builder-file ../resources/json/tbs/builder.json \
+        --no-wait
+    ```
 
 ### Task 5: Create applications in Azure Spring Apps
 
 1. Create an application for each service.
 
-```shell
-az spring app create --name ${CART_SERVICE_APP} --instance-count 1 --memory 1Gi &
-az spring app create --name ${ORDER_SERVICE_APP} --instance-count 1 --memory 1Gi &
-az spring app create --name ${PAYMENT_SERVICE_APP} --instance-count 1 --memory 1Gi &
-az spring app create --name ${CATALOG_SERVICE_APP} --instance-count 1 --memory 1Gi &
-```
+    ```shell
+    az spring app create --name ${CART_SERVICE_APP} --instance-count 1 --memory 1Gi &
+    az spring app create --name ${ORDER_SERVICE_APP} --instance-count 1 --memory 1Gi &
+    az spring app create --name ${PAYMENT_SERVICE_APP} --instance-count 1 --memory 1Gi &
+    az spring app create --name ${CATALOG_SERVICE_APP} --instance-count 1 --memory 1Gi &
+    ```
 
 2. Then, create an app for the Front End.
 
-```shell
-az spring app create --name ${FRONTEND_APP} --instance-count 1 --memory 1Gi
-```
+    ```shell
+    az spring app create --name ${FRONTEND_APP} --instance-count 1 --memory 1Gi
+    ```
 
 > At this time, wait until control is passed back to your console before proceeding or hit **enter** key after 5 mins to get the console back. Please check the Portal to make sure ALL services (4 Services & Frontend App) are created. 
 
@@ -256,36 +266,36 @@ az spring app create --name ${FRONTEND_APP} --instance-count 1 --memory 1Gi
 
 1. Several applications require configuration from Application Configuration Service, so create the bindings.
 
-```shell
-az spring application-configuration-service bind --app ${PAYMENT_SERVICE_APP}
-az spring application-configuration-service bind --app ${CATALOG_SERVICE_APP}
-```
+    ```shell
+    az spring application-configuration-service bind --app ${PAYMENT_SERVICE_APP}
+    az spring application-configuration-service bind --app ${CATALOG_SERVICE_APP}
+    ```
 
 ### Task 7: Bind to Service Registry
 
 1. Several application require service discovery using Service Registry, so create the bindings.
 
-```shell
-az spring service-registry bind --app ${PAYMENT_SERVICE_APP}
-az spring service-registry bind --app ${CATALOG_SERVICE_APP}
-```
+    ```shell
+    az spring service-registry bind --app ${PAYMENT_SERVICE_APP}
+    az spring service-registry bind --app ${CATALOG_SERVICE_APP}
+    ```
 
 ### Task 8: Configure Spring Cloud Gateway
 
 1. Assign an endpoint and update the Spring Cloud Gateway configuration with API information.
 
-```shell
-az spring gateway update --assign-endpoint true
-export GATEWAY_URL=$(az spring gateway show --query properties.url -o tsv)
-    
-az spring gateway update \
-    --api-description "Acme Fitness Store API" \
-    --api-title "Acme Fitness Store" \
-    --api-version "v1.0" \
-    --server-url "https://${GATEWAY_URL}" \
-    --allowed-origins "*" \
-    --no-wait
-```
+    ```shell
+    az spring gateway update --assign-endpoint true
+    export GATEWAY_URL=$(az spring gateway show --query properties.url -o tsv)
+        
+    az spring gateway update \
+        --api-description "Acme Fitness Store API" \
+        --api-title "Acme Fitness Store" \
+        --api-version "v1.0" \
+        --server-url "https://${GATEWAY_URL}" \
+        --allowed-origins "*" \
+        --no-wait
+    ```
 
 ### Task 9: Create  routing rules for the applications:
 
