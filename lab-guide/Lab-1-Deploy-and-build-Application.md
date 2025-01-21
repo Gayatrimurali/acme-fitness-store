@@ -2,7 +2,17 @@
 
 ### Estimated Duration: 40 minutes
 
+## Overview
+
 In this lab, you will learn how to build and deploy both frontend and backend Spring applications to Azure Spring Apps. In order to develop a high-level grasp of how to deploy and operate the same, you will first attempt to set up a very basic hello-world Spring Boot app. After that, you will configure Spring Cloud Gateway, deploy the frontend and backend apps of ACME-FITNESS (the demo application you will use in this lab), and verify that you can access the frontend as well as the backend. Additionally, you will change the Spring Cloud Gateway rules for these backend apps and set them up to communicate with the Application Configuration Service and the Service Registry.
+
+## Lab Objectives
+
+- Task 1: Deploy Infrastructure Stack
+- Task 2: Configure Log Analytics for Azure Spring Apps
+- Task 3: Configure Application Configuration Service and Tanzu Build Service
+- Task 4: Create and Bind Applications to Azure Spring Apps Services
+- Task 5: Configure Spring Cloud Gateway with routing, deployment, access and API exploration
 
 ### Task 1: Deploy Infrastructure Stack
 
@@ -40,10 +50,8 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     ```shell
       vi setup-env-variables.sh
     ```
-   >**Note**: If you face any issues while editing the file please check at the bottom of the file if it is in edit mode or not, if not in edit mode please hit on . Once the updates are done to save the file please do **ctrl+c** and write **:wq!**  this will save the file or if you dont want to save the file do **ctrl_c** and write **:q!**.
    
-
-7. Press **i** key on your keyboard to go to the edit mode and update the values by replacing it with the following values and **Save** it using **Ctrl+S** key and **Close** the file.
+7. Press **i** key on your keyboard to go to the edit mode and replace the values as given below, press **Ctrl+c** , type **:wq!** and hit enter :
 
    * SubscriptionID: **<inject key="Subscription Id" enableCopy="true"/>**
    * Resource Group: **<inject key="Resource Group Name" enableCopy="true"/>**
@@ -69,7 +77,7 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
    > - Click on **Work or School Account**.
    > - **Azure username:** <inject key="AzureAdUserEmail"></inject>  
    > - **Password:** <inject key="AzureAdUserPassword"></inject> 
-   > Select **No, Sign in to this app only at stay signed in apps** popup. popup will close  automatically once successful login and proceed with the next command.
+   > - Select **No, Sign in to this app only at stay signed in apps** popup. popup will close  automatically once successful login and proceed with the next command.
 
 9. Run the following command to move back to the acme-fitness-store directory and then set up the environment.
   
@@ -94,15 +102,15 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
    * Replace $Resource Group with **<inject key="Resource Group Name" enableCopy="true"/>**
    * Replace ${REGION} with **<inject key="Region" enableCopy="true"/>**
    * Replace ${SPRING_APPS_SERVICE} with **<inject key="Spring App Name" enableCopy="true"/>**
-     
-    ```shell
-      az configure --defaults \
-      group=${RESOURCE_GROUP} \
-      location=${REGION} \
-      spring=${SPRING_APPS_SERVICE}
-    ```
+
+        ```shell
+          az configure --defaults \
+          group=${RESOURCE_GROUP} \
+          location=${REGION} \
+          spring=${SPRING_APPS_SERVICE}
+        ```  
     
-   > **Note:** Make sure you are in the **scripts** directory.
+       > **Note:** Make sure you are in the **scripts** directory.
 
 12. Run the following command to accept the terms:
 
@@ -111,6 +119,8 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     ```
 
 13. Run the following command to create the instance of Azure Spring Apps Enterprise.
+
+   * Replace ${SPRING_APPS_SERVICE} with **<inject key="Spring App Name" enableCopy="true"/>**
 
     ```shell
     az spring create --name ${SPRING_APPS_SERVICE} \
@@ -126,7 +136,7 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
         --build-pool-size S2 
     ```
 
-       > **Note:** Creating the instance will take around **20-30** minutes.
+   > **Note:** Creating the instance will take around **20-30** minutes.
 
 ### Task 2: Configure Log Analytics for Azure Spring Apps
 
@@ -205,11 +215,11 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
            ]'
     ```
 
-> Note: For Git Bash users, this command may fail when resource IDs are misinterpreted as file paths because they begin with `/`. 
-> If the above command fails, try setting MSYS_NO_PATHCONV using:
-> `run this command on the terminal **export MSYS_NO_PATHCONV=1** and rerun the diagonstic configure command.
+   > **Note**: For Git Bash users, this command may fail when resource IDs are misinterpreted as file paths because they begin with `/`. 
+   > - If the above command fails, try setting MSYS_NO_PATHCONV using:
+   > - run this command on the terminal **export MSYS_NO_PATHCONV=1** and rerun the diagonstic configure command.
 
-### Task 3: Configure Application Configuration Service
+### Task 3: Configure Application Configuration Service and Tanzu Build Service
 
 1. Create a configuration repository for Application Configuration Service using the Azure CLI.
 
@@ -220,21 +230,19 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
         --uri "https://github.com/Azure-Samples/acme-fitness-store-config"
     ```
 
-### Task 4: Configure Tanzu Build Service
-
-
 1. Make sure you are operating from the ./scripts folder
 
     ```shell
     pwd
     ```
-> Should show something like:
 
-    ```
-    ./source-code/acme-fitness-store/azure-spring-apps-enterprise/scripts
-    ```
+    > - Should show something like:
 
-2. Create a custom builder in Tanzu Build Service using the Azure CLI.
+        ```
+        ./source-code/acme-fitness-store/azure-spring-apps-enterprise/scripts
+        ```
+
+1. Create a custom builder in Tanzu Build Service using the Azure CLI.
 
     ```shell
     az spring build-service builder create -n ${CUSTOM_BUILDER} \
@@ -242,7 +250,7 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
         --no-wait
     ```
 
-### Task 5: Create applications in Azure Spring Apps
+### Task 4: Create and Bind Applications to Azure Spring Apps Services
 
 1. Create an application for each service.
 
@@ -253,16 +261,13 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     az spring app create --name ${CATALOG_SERVICE_APP} --instance-count 1 --memory 1Gi &
     ```
 
-2. Then, create an app for the Front End.
+1. Then, create an app for the Front End.
 
     ```shell
     az spring app create --name ${FRONTEND_APP} --instance-count 1 --memory 1Gi
     ```
 
-> At this time, wait until control is passed back to your console before proceeding or hit **enter** key after 5 mins to get the console back. Please check the Portal to make sure ALL services (4 Services & Frontend App) are created. 
-
-
-### Task 6: Bind to Application Configuration Service
+        > At this time, wait until control is passed back to your console before proceeding or hit **enter** key after 5 mins to get the console back. Please check the Portal to make sure ALL services (4 Services & Frontend App) are created. 
 
 1. Several applications require configuration from Application Configuration Service, so create the bindings.
 
@@ -271,8 +276,6 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     az spring application-configuration-service bind --app ${CATALOG_SERVICE_APP}
     ```
 
-### Task 7: Bind to Service Registry
-
 1. Several application require service discovery using Service Registry, so create the bindings.
 
     ```shell
@@ -280,7 +283,7 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     az spring service-registry bind --app ${CATALOG_SERVICE_APP}
     ```
 
-### Task 8: Configure Spring Cloud Gateway
+### Task 5: Configure Spring Cloud Gateway with routing, deployment, access, and API exploration
 
 1. Assign an endpoint and update the Spring Cloud Gateway configuration with API information.
 
@@ -297,87 +300,81 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
         --no-wait
     ```
 
-### Task 9: Create  routing rules for the applications:
-
 1. Copy the commmand and paste into the terminal to configure the routing.
 
-```shell
-az spring gateway route-config create \
-    --name ${CART_SERVICE_APP} \
-    --app-name ${CART_SERVICE_APP} \
-    --routes-file ../resources/json/routes/cart-service.json
+    ```shell
+    az spring gateway route-config create \
+        --name ${CART_SERVICE_APP} \
+        --app-name ${CART_SERVICE_APP} \
+        --routes-file ../resources/json/routes/cart-service.json
+        
+    az spring gateway route-config create \
+        --name ${ORDER_SERVICE_APP} \
+        --app-name ${ORDER_SERVICE_APP} \
+        --routes-file ../resources/json/routes/order-service.json
     
-az spring gateway route-config create \
-    --name ${ORDER_SERVICE_APP} \
-    --app-name ${ORDER_SERVICE_APP} \
-    --routes-file ../resources/json/routes/order-service.json
-
-az spring gateway route-config create \
-    --name ${CATALOG_SERVICE_APP} \
-    --app-name ${CATALOG_SERVICE_APP} \
-    --routes-file ../resources/json/routes/catalog-service.json
-
-az spring gateway route-config create \
-    --name ${FRONTEND_APP} \
-    --app-name ${FRONTEND_APP} \
-    --routes-file ../resources/json/routes/frontend.json
-```
-
-### Task 10: Build and Deploy Polyglot Applications
+    az spring gateway route-config create \
+        --name ${CATALOG_SERVICE_APP} \
+        --app-name ${CATALOG_SERVICE_APP} \
+        --routes-file ../resources/json/routes/catalog-service.json
+    
+    az spring gateway route-config create \
+        --name ${FRONTEND_APP} \
+        --app-name ${FRONTEND_APP} \
+        --routes-file ../resources/json/routes/frontend.json
+    ```
 
 1. Deploy and build each application, specifying its required parameters.
 
-```shell
-# Deploy Payment Service
-az spring app deploy --name ${PAYMENT_SERVICE_APP} \
-    --config-file-pattern payment/default \
-    --source-path ../../apps/acme-payment \
-    --build-env BP_JVM_VERSION=17
+    ```shell
+    # Deploy Payment Service
+    az spring app deploy --name ${PAYMENT_SERVICE_APP} \
+        --config-file-pattern payment/default \
+        --source-path ../../apps/acme-payment \
+        --build-env BP_JVM_VERSION=17
+    
+    # Deploy Catalog Service
+    az spring app deploy --name ${CATALOG_SERVICE_APP} \
+        --config-file-pattern catalog/default \
+        --source-path ../../apps/acme-catalog \
+        --build-env BP_JVM_VERSION=17
+    
+    # Deploy Order Service
+    az spring app deploy --name ${ORDER_SERVICE_APP} \
+        --builder ${CUSTOM_BUILDER} \
+        --source-path ../../apps/acme-order 
+    
+    # Deploy Cart Service 
+    az spring app deploy --name ${CART_SERVICE_APP} \
+        --builder ${CUSTOM_BUILDER} \
+        --env "CART_PORT=8080" \
+        --source-path ../../apps/acme-cart 
+    
+    # Deploy Frontend App
+    az spring app deploy --name ${FRONTEND_APP} \
+        --builder ${CUSTOM_BUILDER} \
+        --source-path ../../apps/acme-shopping 
+    ```
 
-# Deploy Catalog Service
-az spring app deploy --name ${CATALOG_SERVICE_APP} \
-    --config-file-pattern catalog/default \
-    --source-path ../../apps/acme-catalog \
-    --build-env BP_JVM_VERSION=17
-
-# Deploy Order Service
-az spring app deploy --name ${ORDER_SERVICE_APP} \
-    --builder ${CUSTOM_BUILDER} \
-    --source-path ../../apps/acme-order 
-
-# Deploy Cart Service 
-az spring app deploy --name ${CART_SERVICE_APP} \
-    --builder ${CUSTOM_BUILDER} \
-    --env "CART_PORT=8080" \
-    --source-path ../../apps/acme-cart 
-
-# Deploy Frontend App
-az spring app deploy --name ${FRONTEND_APP} \
-    --builder ${CUSTOM_BUILDER} \
-    --source-path ../../apps/acme-shopping 
-```
-
-> Note: Deploying all applications will take 5-10 minutes
-
-### Task 11: Access the Application through Spring Cloud Gateway
+    > **Note**: Deploying all applications will take 5-10 minutes
 
 1. Retrieve the URL for Spring Cloud Gateway and open it in a browser, paste the command in terminal and copy the url and browse.
 
-```shell
-echo "https://${GATEWAY_URL}"
-```
+    ```shell
+    echo "https://${GATEWAY_URL}"
+    ```
 
-> You should see the ACME Fitness Store Application
-
-### Task 12: Explore the API using API Portal
+    > You should see the ACME Fitness Store Application
 
 1. Assign an endpoint to API Portal and open it in a browser.
 
-```shell
-az spring api-portal update --assign-endpoint true
-export PORTAL_URL=$(az spring api-portal show --query properties.url -o tsv)
+    ```shell
+    az spring api-portal update --assign-endpoint true
+    export PORTAL_URL=$(az spring api-portal show --query properties.url -o tsv)
+    
+    echo "https://${PORTAL_URL}"
+    ```
 
-echo "https://${PORTAL_URL}"
-```
+## Summary
 
-> Now, click on **Next** in the lab guide section in the bottom right corner to jump to the next exercise instructions.
+### You have successfully completed the lab!
