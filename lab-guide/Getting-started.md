@@ -1,52 +1,21 @@
 # Modernize Java Apps
 
-## Overall Estimated Duration: 8 Hours
+### Overall Estimated Duration: 8 Hours
 
 ## Overview
 
-The Acme-fitness application is an online shopping platform for having the best equipment to make you fit. This sample application comprises a variety of services, such as:
-
-* Three Java Spring Boot applications:
-  * A catalog service for fetching available products.
-  * A payment service for processing and approving payments for users' orders.
-  * An identity service for referencing the authenticated user.
-
-* 1 Python application:
-  * A cart service for managing a user's items that have been selected for purchase.
-
-* 1 ASP.NET Core applications:
-  * An order service for placing orders to buy products that are in the users' carts.
-
-* 1 NodeJS and static HTML Application:
-  * A front-end shopping application.
-
+In this lab, you will learn how to build and deploy both frontend and backend Spring applications to Azure Spring Apps. Starting with a basic hello-world Spring Boot app, you'll progress to deploying the ACME-FITNESS demo application, configuring Spring Cloud Gateway, and verifying frontend and backend access. You will modify Spring Cloud Gateway rules to enable communication with the Application Configuration Service and Service Registry. Additionally, you'll configure Single Sign-On using Microsoft Entra ID and connect applications to persistent stores, utilizing Azure Key Vault for secure secret and key management. The lab will also cover managing SSL/TLS certificates, enforcing role-based access policies, and monitoring application health through live metrics and logs. Lastly, you'll implement rate limiting for your APIs using Spring Cloud Gateway filters.
 
 ## Objectives
-By the end of this lab, you will be able to:
 
-* Understand the Application Architecture:
-  * Learn about the different services that make up the Acme-fitness application, including Java Spring Boot, Python, ASP.NET Core, and NodeJS applications.
 
-* Deploy and Manage the Acme-fitness Application:
-  * Deploy the application services on the appropriate platforms.
 
-* Manage the interactions between these services, including catalog, payment, identity, cart, order, front-end services and Integrate AI Capabilities.
 
 ## Architecture Diagram
 
 ![acme-fitness](Images/java1.png)
 
-## Lab Context
-Throughout this hands-on lab, you will learn several things:
-
-- Build and deploy both frontend and backend Spring applications to Azure Spring Apps.
-- Configure Single Sign-On (SSO) for the application using Microsoft Entra ID.
-- Create persistent stores (PostgreSQL and Azure Cache for Redis) outside the applications and connect those applications to those stores.
-- Use Azure Key Vault to securely store and load secrets to connect to Azure services.
-- Monitor applications using Application Insights and Log Analytic Workspace.
-- Updating the source code of the application and the spring application.
-- Use Spring Cloud Gateway filters to apply rate limiting to your API.
-- Automate provisioning and deployments using GitHub Actions.
+## Pre-requisites
 
 # Getting Started with Lab
 
@@ -102,7 +71,7 @@ The CloudLabs support team is available 24/7, 365 days a year, via email and liv
 
 Learner Support Contacts:
 
-* Email Support: labs-support@spektrasystems.com
+* Email Support: cloudlabs-support@spektrasystems.com
 * Live Chat Support: https://cloudlabs.ai/labs-support
   
 Now, click on Next from the lower right corner to move on to the next page.
