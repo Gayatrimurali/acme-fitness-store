@@ -8,14 +8,22 @@ In this lab, you will learn how to build and deploy both frontend and backend Sp
 
 ## Objectives
 
+- Deploy and Build Applications
+- Configure Single Sign-On
+- Integrate with Azure Database for PostgreSQL and Azure Cache for Redis
+- Load Application Secrets using Key Vault
+- Monitor Applications End-to-End (Optional)
+- Change the Application Code and Set Request Rate Limit (Optional)
+- Automate from idea to production
+- Infuse AI into Fitness Store
 
-
+## Pre-requisites
 
 ## Architecture Diagram
 
 ![acme-fitness](Images/java1.png)
 
-## Pre-requisites
+
 
 # Getting Started with Lab
 
