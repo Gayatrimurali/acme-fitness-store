@@ -259,6 +259,8 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     az spring app create --name ${CATALOG_SERVICE_APP} --instance-count 1 --memory 1Gi &
     ```
 
+   > **Note:** The process may take a few minutes to finish. If it gets stuck after some time, please click on Enter.
+
 1. Then, create an app for the Front End.
 
     ```shell
