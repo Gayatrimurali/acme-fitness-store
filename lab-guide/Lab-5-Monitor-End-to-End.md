@@ -9,7 +9,11 @@ In this unit, you will explore live application metrics and query logs to know t
 ## Lab Objectives
 
 - Task 1: Add Instrumentation Key to Key Vault
-- 
+- Task 2: Update Sampling Rate
+- Task 3: Reload Applications
+- Task 4: Get the log stream for an application
+- Task 5: Start monitoring apps and dependencies - in Application Insights
+- Task 6: Start monitoring ACME Fitness Store's logs and metrics in Azure Log Analytics
 
 ### Task 1: Add Instrumentation Key to Key Vault
 
