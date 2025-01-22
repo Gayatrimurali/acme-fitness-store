@@ -67,7 +67,7 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
       export REGION=eastus                          
     ```
 
-8. Press `Ctrl+C` , type `wq!` and hit **Enter** to save.
+8. Press `Ctrl+C` , type `:wq!` and hit **Enter** to save.
 
 9. Run the following command to log in to Azure.
 
