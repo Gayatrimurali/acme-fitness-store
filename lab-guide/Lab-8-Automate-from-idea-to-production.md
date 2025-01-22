@@ -35,7 +35,7 @@
   - OPENAI_RESOURCE_NAME: **my-openai-<inject key="Deployment ID" enableCopy="false"/>**
   - SPRING_AI_AZURE_OPENAI_ENDPOINT="your_azure_openai_endpoint" (will be adding it once the OPENAI service is deployed)
   - SPRING_AI_AZURE_OPENAI_API_KEY="your_api_key" (will be adding it once the OPENAI service is deployed)
-  - SPRING_AI_AZURE_OPENAI_MODEL: **gpt-35-turbo-16k**
+  - SPRING_AI_AZURE_OPENAI_MODEL: **gpt-35-turbo**
   - SPRING_AI_AZURE_OPENAI_EMBEDDINGMODEL: **text-embedding-ada-002**
 
 ### Task 2: Prepare Azure OpenAI 
@@ -82,23 +82,29 @@
        --capacity 1
     ```
 
-    > Alternatively, you can click go to the link, e.g. https://oai.azure.com/
+    - RESOURCE_GROUP: **Modernize-java-apps**
+    - OPENAI_RESOURCE_NAME: **my-openai-<inject key="Deployment ID" enableCopy="false"/>**
+
+    > Alternatively, you can go back to portal, select the OpenAI service which we created in step 1 of this task.
+    > - Click on Go to Azure AI Foundry Portal.
+    > - Navigate to Deployments from the left pane and verify your deployments.
 
       ![A screenshot of the Azure AI Studio with no deployments.](./Images/openai-azure-ai-studio-deployments-new-01.png)
 
-      ![A screenshot of the Azure AI Studio creating first deployment.](./Images/openai-azure-ai-studio-deployments-new-02.png)
+3. Run the below command to update the values in `scripts/setup-ai-env-variables.sh`, 
 
-      ![A screenshot of the Azure AI Studio creating second deployment.](./Images/openai-azure-ai-studio-deployments-new-03.png)
+      ```bash
+        vi setup-ai-env-variables.sh
+        source ./setup-ai-env-variables.sh
+      ```
 
-3. Update the values in `scripts/setup-ai-env-variables.sh`, e.g.
-
-    * for Endpoint and API KEY - check under Azure Portal OpenAI instances in `Keys and Endpoint` section
+    * Navigate to the OpenAI Service you have created and select Keys & Endpoint from the left pane.
+      
+    * Copy the Primary Key and Endpoint and paste it in the file.
     
          ![A screenshot of the Azure Portal OpenAI instance.](./Images/openaikey-new.png)    
     
-    * for `AI_APP` use default name, e.g. `assist-service`
-    
-4. You can get the endpoint by querying the `cognitiveservices` from Azure CLI, e.g.
+4. You can get the endpoint by querying the `cognitiveservices` from Azure CLI, 
 
     ```bash
        az cognitiveservices account show \
@@ -107,21 +113,24 @@
          --output json | jq -r '.properties.endpoint' 
     ```
 
+    - RESOURCE_GROUP: **Modernize-java-apps**
+    - OPENAI_RESOURCE_NAME: **my-openai-<inject key="Deployment ID" enableCopy="false"/>**
+
 ### Task 3: Build and Deploy Assist app to Azure Spring Apps
 
-1. Configure AI environment variables, e.g. 
+1. Configure AI environment variables
 
    ```bash
       source ./setup-ai-env-variables.sh
    ```
 
-2. Create the new AI service `assist-service`, e.g.
+2. Create the new AI service `assist-service`
 
    ```bash    
        az spring app create --name ${AI_APP} --instance-count 1 --memory 1Gi
    ```
 
-3.  Configure Spring Cloud Gateway with the `assist-service` routes, e.g.
+3.  Configure Spring Cloud Gateway with the `assist-service` routes
 
    ```bash
        az spring gateway route-config create \
@@ -130,7 +139,7 @@
            --routes-file ../resources/json/routes/assist-service.json
    ```
     
-4. Deploy the application, e.g. 
+4. Deploy the application 
 
    ```bash
        az spring app deploy --name ${AI_APP} \
