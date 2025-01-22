@@ -41,7 +41,7 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
     export STORAGE_ACCOUNT_NAME='change-me'        # choose a name for your storage account
     ```
 
-  > **Note:** Please provide resource group and storage account a unique name.
+  > **Note:** Please provide resource group and storage account an unique name.
 
   > **Note:** Storage account name must be between 3 and 24 characters in length and use numbers and lower-case letters only.
 
@@ -165,7 +165,7 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
       > **Note**: For the values of `OIDC_JWK_SET_URI`, `OIDC_CLIENT_ID`, `OIDC_CLIENT_SECRET`, `OIDC_ISSUER_URI`, enter the values you have copied in your text editor in Lab 2.
 
 
-1. Add the secret `TF_BACKEND_CONFIG` to GitHub Actions with the value replacing `${STORAGE_ACCOUNT_NAME}` with and `${STORAGE_RESOURCE_GROUP}` with storage resource group
+1. Add the secret `TF_BACKEND_CONFIG` to GitHub Actions with the value replacing `${STORAGE_ACCOUNT_NAME}` with and `${STORAGE_RESOURCE_GROUP}` with the resource group.
 
    ```text
    resource_group_name  = "${STORAGE_RESOURCE_GROUP}"
@@ -173,7 +173,10 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
    container_name       = "terraform-state-container"
    key                  = "dev.terraform.tfstate"
    ```
-      ![](Images/newsecret.png)
+
+      > **Note**: Go to the Azure Portal, search for "Storage Account," and use it along with its associated resource group (RG).
+
+     ![](Images/newsecret.png)
 
 1. From the forked repo, click on **Actions**.
 
