@@ -10,7 +10,7 @@ In this unit, you will explore live application metrics and query logs to know t
 
    > **Note:** In future iterations, the build packs for non-java applications will support Application Insights binding, and this step will be unnecessary.
 
-2. To retrieve the Instrumentation Key for Application Insights and add it to the Key Vault, run the following command in the Git Bash window. Replace azure-spring-apps-SUFFIX with your **azure-spring-apps-<inject key="DeploymentID" enableCopy="false" />**
+2. To retrieve the Instrumentation Key for Application Insights and add it to the Key Vault, run the following command in the Git Bash window. Replace azure-spring-apps-SUFFIX with your **azure-spring-apps-<inject key="DeploymentID" enableCopy="false" />** and the $RESOURCE_GROUP with **Modernize-java-apps**
 
 ```shell
    export INSTRUMENTATION_KEY=$(az monitor app-insights component show --app azure-spring-apps-SUFFIX --resource-group $RESOURCE_GROUP | jq -r '.connectionString')
@@ -193,7 +193,7 @@ You can use `az spring app logs -h` to explore more parameters and log stream fu
     | project TimeGenerated, RemoteAddr, Host, Request, Status, BodyBytesSent, RequestTime, ReqId, RequestHeaders
     | sort by TimeGenerated
 ```
-   ![](Images/mjv2-64-new.png)
+   ![](Images/L5T6S7-2201.png)
 
 8. Click on `+` **(1)** to create the new query. Now paste the below Kusto query **(2)** and click on **Run (3)** to see all the logs from Spring Cloud Gateway managed by Azure Spring Apps:
 

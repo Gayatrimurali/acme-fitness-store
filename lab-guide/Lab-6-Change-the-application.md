@@ -18,9 +18,9 @@ Duration: 10 minutes
 
 2. The index.html file will open with Code Editor, now in line number **67**, update the value from **About ACME Fitness** to **ACME Fitness key Points** and save the file using the **:wq!** or you can use visual studio code editor and update the field as per your convenience.
 
-     ![gfd](Images/lab6.png)
+     ![gfd](Images/L6T1S2.1-2201.png)
 
-     ![dfgj](Images/keyupdates2.png)
+     ![dfgj](Images/L6T1S2.2-2201.png)
 
 3. Once the changes are done, you will be publishing a new staging deployment to the frontend application.
 
