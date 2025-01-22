@@ -9,20 +9,23 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
 
 ```shell
 cd ../../../azure-spring-apps-enterprise/scripts/
+```
+```shell
 pwd
 ```
+
 2. Create a bash script with environment variables by making a copy of the supplied template:.
 
 ```shell
 cp ./setup-storage-env-variables-template.sh ./setup-storage-env-variables.sh
 ```
 
-3. Using an editor of your choice, edit the file, (for the purposes of example we will use the nano editor), and add the following values.
+3. Using an editor of your choice, edit the file, (for the purposes of example we will use the vi editor), and add the following values.
 
 ```shell
 vi setup-storage-env-variables.sh 
 ```
-Enter the following information:
+Press i to enter the below information and then press **Ctrl + C** and **:wq** to save.
 
 ```shell
 export STORAGE_RESOURCE_GROUP='change-me'      # different resource group from previous steps
@@ -30,6 +33,8 @@ export STORAGE_ACCOUNT_NAME='change-me'        # choose a name for your storage 
 ```
 
 > **Note:** Please provide resource group and storage account a unique name.
+
+> **Note:** Storage account name must be between 3 and 24 characters in length and use numbers and lower-case letters only.
 
 4. Then, set the environment.
 
@@ -112,7 +117,7 @@ az ad sp create-for-rbac --name "change-me" \
 
 1. Find **Secrets and variables** **(1)** under _Security_ on the left side of menu, and click on **Actions** **(2)**. After that Click on **New repository secret** **(3)**.
   
-   ![](Images/secretsandvariables.png)
+   ![](Images/L7T2S6-2201.png)
    
 1. Type `AZURE_CREDENTIALS` **(1)** for the Name of the secret, enter the following code under Secret and make sure to replace the values of **ClientId (Application Id)**, **ClientSecret (Secret Key)**, **Subscription_ID** and **TenantId (Directory ID)** **(2)** and then click on **Add Secret** **(3)**.   
 
