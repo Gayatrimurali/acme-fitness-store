@@ -224,6 +224,13 @@ In this lab, you will explore live application metrics and query logs to know th
 
 10. If the logs are still loading, please press `Ctrl + C` and close the Git Bash window.
 
+>**Congratulations** on completing the Task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com.
+
+   <validation step="ffb38d08-1164-439d-94c0-0833aca63f43" />
+
 ## Summary 
 
 In this lab, you have added Instrumentation Key to Key Vault, updated Sampling Rate, reloaded Applications, got the log stream for an application ,started monitoring apps and dependencies - in Application Insight and in ACME Fitness Store's logs and metrics in Azure Log Analytics.
