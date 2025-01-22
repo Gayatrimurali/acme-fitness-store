@@ -377,4 +377,6 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
 
 ## Summary
 
+In this lab, you have deployed Infrastructure Stack, configured Log Analytics for Azure Spring Apps, Application Configuration Service and Tanzu Build Service, created and binded Applications to Azure Spring Apps Services and configured Spring Cloud Gateway with routing, deployment, access and API exploration
+
 ### You have successfully completed the lab!
