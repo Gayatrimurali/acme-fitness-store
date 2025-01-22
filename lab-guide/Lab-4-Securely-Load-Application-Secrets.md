@@ -113,19 +113,19 @@ In this lab, you will use Azure Key Vault to securely store and load secrets to 
 
 10.  Run the following command to add an access policy to Azure Key Vault to allow Managed Identities to read secrets.
 
-   ```shell
-   az keyvault set-policy --name ${KEY_VAULT} \
-       --object-id ${CART_SERVICE_APP_IDENTITY} --secret-permissions get list
-       
-   az keyvault set-policy --name ${KEY_VAULT} \
-       --object-id ${ORDER_SERVICE_APP_IDENTITY} --secret-permissions get list
-   
-   az keyvault set-policy --name ${KEY_VAULT} \
-       --object-id ${CATALOG_SERVICE_APP_IDENTITY} --secret-permissions get list
-   
-   az keyvault set-policy --name ${KEY_VAULT} \
-       --object-id ${IDENTITY_SERVICE_APP_IDENTITY} --secret-permissions get list
-   ```
+    ```shell
+    az keyvault set-policy --name ${KEY_VAULT} \
+        --object-id ${CART_SERVICE_APP_IDENTITY} --secret-permissions get list
+        
+    az keyvault set-policy --name ${KEY_VAULT} \
+        --object-id ${ORDER_SERVICE_APP_IDENTITY} --secret-permissions get list
+    
+    az keyvault set-policy --name ${KEY_VAULT} \
+        --object-id ${CATALOG_SERVICE_APP_IDENTITY} --secret-permissions get list
+    
+    az keyvault set-policy --name ${KEY_VAULT} \
+        --object-id ${IDENTITY_SERVICE_APP_IDENTITY} --secret-permissions get list
+    ```
 
    > **Note:** Identity Service will not exist if you haven't completed Unit 2. Skip configuring an identity or policy for this service if not configuring Single Sign-On at this point.
 
