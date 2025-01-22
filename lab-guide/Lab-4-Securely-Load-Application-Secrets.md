@@ -23,17 +23,17 @@ In this lab, you will use Azure Key Vault to securely store and load secrets to 
 
 1. Choose a unique name for your Key Vault and set an environment variable with the value **<inject key="KeyVault Name" enableCopy="true" />** (Replace "change-me" with the mentioned key vault name.)
     
-  ```shell
-    export KEY_VAULT="change-me"      # customize this
-  ```
+   ```shell
+     export KEY_VAULT="change-me"      # customize this
+   ```
 2. Create an Azure Key Vault and store connection secrets.
 
-  ```shell
-  az keyvault create --name ${KEY_VAULT} -g ${RESOURCE_GROUP}
-  export KEYVAULT_URI=$(az keyvault show --name ${KEY_VAULT} \
-      --query properties.vaultUri \
-      -o tsv)
-  ```
+   ```shell
+   az keyvault create --name ${KEY_VAULT} -g ${RESOURCE_GROUP}
+   export KEYVAULT_URI=$(az keyvault show --name ${KEY_VAULT} \
+       --query properties.vaultUri \
+       -o tsv)
+   ```
 
 3. Login to azure portal and search for keyvault created, click on keyvault and on the left menu click on **Settings > Access configuration**.
    
@@ -45,28 +45,28 @@ In this lab, you will use Azure Key Vault to securely store and load secrets to 
 
 6.  To store database connection secrets in Key Vault, run the following command.
 
-   ```shell
-   export POSTGRES_SERVER_FULL_NAME="${POSTGRES_SERVER}.postgres.database.azure.com"
-   ```
+     ```shell
+     export POSTGRES_SERVER_FULL_NAME="${POSTGRES_SERVER}.postgres.database.azure.com"
+     ```
 
-   ```shell
-   az keyvault secret set --vault-name ${KEY_VAULT} \
-       --name "POSTGRES-SERVER-NAME" --value ${POSTGRES_SERVER_FULL_NAME}
-   
-   az keyvault secret set --vault-name ${KEY_VAULT} \
-       --name "ConnectionStrings--OrderContext" --value "${POSTGRES_CONNECTION_STR}"
-   
-   az keyvault secret set --vault-name ${KEY_VAULT} \
-       --name "CATALOG-DATABASE-NAME" --value ${CATALOG_SERVICE_DB}
+    ```shell
+    az keyvault secret set --vault-name ${KEY_VAULT} \
+        --name "POSTGRES-SERVER-NAME" --value ${POSTGRES_SERVER_FULL_NAME}
     
-   az keyvault secret set --vault-name ${KEY_VAULT} \
-       --name "POSTGRES-LOGIN-NAME" --value ${POSTGRES_SERVER_USER}
-       
-   az keyvault secret set --vault-name ${KEY_VAULT} \
-       --name "POSTGRES-LOGIN-PASSWORD" --value ${POSTGRES_SERVER_PASSWORD}
-   ```
+    az keyvault secret set --vault-name ${KEY_VAULT} \
+        --name "ConnectionStrings--OrderContext" --value "${POSTGRES_CONNECTION_STR}"
+    
+    az keyvault secret set --vault-name ${KEY_VAULT} \
+        --name "CATALOG-DATABASE-NAME" --value ${CATALOG_SERVICE_DB}
+     
+    az keyvault secret set --vault-name ${KEY_VAULT} \
+        --name "POSTGRES-LOGIN-NAME" --value ${POSTGRES_SERVER_USER}
+        
+    az keyvault secret set --vault-name ${KEY_VAULT} \
+        --name "POSTGRES-LOGIN-PASSWORD" --value ${POSTGRES_SERVER_PASSWORD}
+    ```
       
-   ![](Images/mjv2-22-new.png)
+       ![](Images/mjv2-22-new.png)
 
 7. To retrieve and store Redis connection secrets in Key Vault, run the following command.
 
