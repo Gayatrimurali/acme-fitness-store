@@ -65,6 +65,8 @@ In this lab, you will explore live application metrics and query logs to know th
    
       > **Note:** The above spring apps can take up to **7** minutes to finish restarting. Also, if any app has failed to restart, please run the above command again for that app only.
 
+      > **Note:** If the app continues to fail, execute the command from Lab 1, Task 5, Step 3 for the associated application, and then repeat the step outlined above.
+
 ### Task 4: Get the log stream for an application
 
 1. Run the following command to get the latest 100 lines of app console logs from the Catalog Service.
@@ -143,7 +145,7 @@ In this lab, you will explore live application metrics and query logs to know th
    
 10. Now, from the left panel, navigate to the `Live Metrics` blade under Investigate - you can see live metrics on screen with low latencies < 1 second:
 
-        ![](Images/mjv2-60.png)
+    ![](Images/mjv2-60.png)
 
 ### Task 6: Start monitoring ACME Fitness Store's logs and metrics in Azure Log Analytics
 
@@ -151,7 +153,7 @@ In this lab, you will explore live application metrics and query logs to know th
 
       ![](Images/mjv2-58.png)
 
-2. Under the Log Analytics Workspaces page, select **Log-analytics-workspace** created.
+2. Under the Log Analytics Workspaces page, select the **Log-analytics-workspace** which was previously created.
    
       ![](Images/Ex5-T6-S2.png)
    
@@ -196,35 +198,34 @@ In this lab, you will explore live application metrics and query logs to know th
       ```
       ![](Images/mjv2-63-new.png)
 
-7. Click on `+` **(1)** to create the new query. Now paste the below Kusto query **(2)** and click on **Run (3)** to see all the inbound calls into Azure Spring Apps:
+7. Click on `+` to create the new query. Now paste the below Kusto query **(2)** and click on **Run (3)** to see all the inbound calls into Azure Spring Apps:
 
       ```sql
           AppPlatformIngressLogs
           | project TimeGenerated, RemoteAddr, Host, Request, Status, BodyBytesSent, RequestTime, ReqId, RequestHeaders
           | sort by TimeGenerated
       ```
-      ![](Images/L5T6S7-2201.png)
 
-8. Click on `+` **(1)** to create the new query. Now paste the below Kusto query **(2)** and click on **Run (3)** to see all the logs from Spring Cloud Gateway managed by Azure Spring Apps:
+8. Click on `+` to create the new query. Now paste the below Kusto query **(2)** and click on **Run (3)** to see all the logs from Spring Cloud Gateway managed by Azure Spring Apps:
 
       ```sql
           AppPlatformSystemLogs
           | where LogType contains "SpringCloudGateway"
           | project TimeGenerated,Log
       ```
-      ![](Images/mjv2-65-new.png)
 
-9. Click on `+` **(1)** to create the new query. Now paste the below Kusto query **(2)** and click on **Run (3)** to see all the logs from the Spring Cloud Service Registry managed by Azure Spring Apps:
+9. Click on `+` to create the new query. Now paste the below Kusto query **(2)** and click on **Run (3)** to see all the logs from the Spring Cloud Service Registry managed by Azure Spring Apps:
 
       ```sql
           AppPlatformSystemLogs
           | where LogType contains "ServiceRegistry"
           | project TimeGenerated, Log
       ```
-      ![](Images/mjv2-66-new.png)
+
+10. If the logs are still loading, please click on **Enter** and close the Git Bash window.
 
 ## Summary 
 
-In this lab, you have - added Instrumentation Key to Key Vault, updated Sampling Rate, reloaded Applications, got the log stream for an application ,started monitoring apps and dependencies - in Application Insight and in ACME Fitness Store's logs and metrics in Azure Log Analytics.
+In this lab, you have added Instrumentation Key to Key Vault, updated Sampling Rate, reloaded Applications, got the log stream for an application ,started monitoring apps and dependencies - in Application Insight and in ACME Fitness Store's logs and metrics in Azure Log Analytics.
 
 ### You have succesfully completed the lab!
