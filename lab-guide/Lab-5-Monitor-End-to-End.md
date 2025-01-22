@@ -4,7 +4,7 @@
 
 ## Overview
 
-In this unit, you will explore live application metrics and query logs to know the health of your applications.
+In this lab, you will explore live application metrics and query logs to know the health of your applications.
 
 ## Lab Objectives
 
@@ -222,6 +222,9 @@ In this unit, you will explore live application metrics and query logs to know t
           | project TimeGenerated, Log
       ```
       ![](Images/mjv2-66-new.png)
-   
 
-> Now, click on **Next** in the lab guide section in the bottom right corner to jump to the next exercise instructions.
+## Summary 
+
+In this lab, you have - added Instrumentation Key to Key Vault, updated Sampling Rate, reloaded Applications, got the log stream for an application ,started monitoring apps and dependencies - in Application Insight and in ACME Fitness Store's logs and metrics in Azure Log Analytics.
+
+### You have succesfully completed the lab!
