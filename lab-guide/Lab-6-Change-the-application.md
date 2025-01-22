@@ -127,6 +127,13 @@ When the limit is exceeded, the response will fail with `429 Too Many Requests` 
    
    ![](Images/L7-t3-s1.png) 
 
+>**Congratulations** on completing the Task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com.
+
+   <validation step="095d29d0-66e0-458e-b7eb-c9ca9c2366c0" />
+
 ## Summary 
 
 In this lab, you have changed the Application Code and Update Settings and updated Spring Cloud Gateway Routes
