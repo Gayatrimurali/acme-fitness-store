@@ -170,6 +170,13 @@ In this lab, you will use Azure Key Vault to securely store and load secrets to 
     
    > **Note:** After finishing the exercise, be sure not to close the Git Bash window.
 
+>**Congratulations** on completing the Task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com.
+
+   <validation step="09244cab-0779-4ca5-8793-5b594bdd4b3e" />
+
 ## Summary
 
 In this lab, you have stored secrets and activated applications to load secrets from Azure Key Vault.
