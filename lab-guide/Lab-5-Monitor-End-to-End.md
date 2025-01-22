@@ -222,7 +222,7 @@ In this lab, you will explore live application metrics and query logs to know th
           | project TimeGenerated, Log
       ```
 
-10. If the logs are still loading, please click on **Enter** and close the Git Bash window.
+10. If the logs are still loading, please press `Ctrl + C` and close the Git Bash window.
 
 ## Summary 
 
