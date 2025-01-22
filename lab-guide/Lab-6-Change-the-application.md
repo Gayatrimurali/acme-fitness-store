@@ -1,20 +1,28 @@
-## Lab 6: Change the Application Code and Set Request Rate Limit (Optional)
+# Lab 6: Change the Application Code and Set Request Rate Limit (Optional)
 
-Duration: 10 minutes
+### Estimated Duration: 10 minutes
 
-  In this exercise, you will be updating the source code of the application and the spring application.
+## Overview
+
+In this exercise, you will be updating the source code of the application and the spring application.
+
+## Lab Objectives
+
+- Task 1: change the Application Code and Update Settings
+- Task 2: Spring Cloud Gateway Rate Limit Filter (Read-only)
+- Task 3: Update Spring Cloud Gateway Routes
 
 ### Task 1: change the Application Code and Update Settings
 
 1. Navigate back to the Git Bash window and run the below command to open the index file where you will be making the code changes. 
 
-   ```bash
-   
-   cd ../../apps/acme-shopping/public/
-   vi index.html
-   ```
+     ```bash
+     
+     cd ../../apps/acme-shopping/public/
+     vi index.html
+     ```
 
-    > **Note:** Please note the names of the resources in below images may very with the resources you created in the lab. 
+      > **Note:** Please note the names of the resources in below images may very with the resources you created in the lab. 
 
 2. The index.html file will open with Code Editor, now in line number **67**, update the value from **About ACME Fitness** to **ACME Fitness key Points** and save the file using the **:wq!** or you can use visual studio code editor and update the field as per your convenience.
 
@@ -35,13 +43,13 @@ Duration: 10 minutes
   
 5. Once the creation of the new deployment is completed, navigate back to Azure Spring Apps named **<inject key="Spring App Name" enableCopy="true" />** **(1)** in Azure Portal. Then click on **Apps** **(2)** from the left menu under Settings and select **frontend** **(3)** app from the list.
 
-    ![](Images/lab6-frontend-app.png)
+      ![](Images/lab6-frontend-app.png)
     
 6. In **frontend** App pane, click on **Deployments** **(1)** from the left menu under Settings and click on the **Staging** **(2)** hyperlink next to **green** deployment to verify the new staging deployment to the frontend application
     
-    ![](Images/lab6-green-app.png)
+      ![](Images/lab6-green-app.png)
     
-    ![](Images/green.png)
+      ![](Images/green.png)
     
 7. Now, we will be moving the **green** deployment to the production to see the changes from the production URL.
 
@@ -51,13 +59,14 @@ Duration: 10 minutes
     az spring app set-deployment --deployment green --name ${FRONTEND_APP}
     ```
     
-    ![](Images/updatesstagging.png)
+      ![](Images/updatesstagging.png)
     
 9. Once the set deployment is completed, refresh the main application Gateway URL, and you should be able to see the changes in production. If you do not have the application open, run the below command to get the Gateway endpoint. (Copy the URL and paste it into a new browser.)
 
     ```bash
     echo "https://${GATEWAY_URL}"
     ```
+
      ![](Images/movetoprod.png)
 
 
@@ -118,5 +127,15 @@ When the limit is exceeded, the response will fail with `429 Too Many Requests` 
    
    ![](Images/L7-t3-s1.png) 
 
+>**Congratulations** on completing the Task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com.
 
-> Now, click on **Next** in the lab guide section in the bottom right corner to jump to the next exercise instructions.
+   <validation step="095d29d0-66e0-458e-b7eb-c9ca9c2366c0" />
+
+## Summary 
+
+In this lab, you have changed the Application Code and Update Settings and updated Spring Cloud Gateway Routes
+
+### You have succesfully completed the lab!

@@ -51,7 +51,7 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
       vi setup-env-variables.sh
     ```
    
-7. Press **i** key on your keyboard to go to the edit mode and replace the values as given below, press **Ctrl+c** , type **:wq!** and hit enter :
+7. Press **i** key on your keyboard to go to the edit mode and replace the values as given below:
 
    * SubscriptionID: **<inject key="Subscription Id" enableCopy="true"/>**
    * Resource Group: **<inject key="Resource Group Name" enableCopy="true"/>**
@@ -67,7 +67,9 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
       export REGION=eastus                          
     ```
 
-8. Run the following command to log in to Azure.
+8. Press `Ctrl+C` , type `:wq!` and hit **Enter** to save.
+
+9. Run the following command to log in to Azure.
 
     ```shell
       az login
@@ -79,14 +81,14 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
    > - **Password:** <inject key="AzureAdUserPassword"></inject> 
    > - Select **No, Sign in to this app only at stay signed in apps** popup. popup will close  automatically once successful login and proceed with the next command.
 
-9. Run the following command to move back to the acme-fitness-store directory and then set up the environment.
+10. Run the following command to move back to the acme-fitness-store directory and then set up the environment.
   
     ```shell
       chmod +x ./setup-env-variables.sh
       source ./setup-env-variables.sh
     ``` 
   
-10. Run the following commands to get the list of subscriptions and to set your subscription.
+11. Run the following commands to get the list of subscriptions and to set your subscription.
 
     * Replace ${SUBSCRIPTION} with the SubscriptionID: **<inject key="Subscription Id" enableCopy="true"/>**
 
@@ -97,7 +99,7 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     
        ![](Images/mjv2-4.png)
    
-11. Now, run the following command to set your default resource group name and cluster name.
+12. Now, run the following command to set your default resource group name and cluster name.
 
    * Replace $Resource Group with **<inject key="Resource Group Name" enableCopy="true"/>**
    * Replace ${REGION} with **<inject key="Region" enableCopy="true"/>**
@@ -112,31 +114,31 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     
        > **Note:** Make sure you are in the **scripts** directory.
 
-12. Run the following command to accept the terms:
+13. Run the following command to accept the terms:
 
     ```shell
     az term accept --publisher vmware-inc --product azure-spring-cloud-vmware-tanzu-2 --plan asa-ent-hr-mtr
     ```
 
-13. Run the following command to create the instance of Azure Spring Apps Enterprise.
+14. Run the following command to create the instance of Azure Spring Apps Enterprise.
 
    * Replace ${SPRING_APPS_SERVICE} with **<inject key="Spring App Name" enableCopy="true"/>**
 
-    ```shell
-    az spring create --name ${SPRING_APPS_SERVICE} \
-        --resource-group ${RESOURCE_GROUP} \
-        --location ${REGION} \
-        --sku Enterprise \
-        --enable-application-configuration-service \
-        --enable-service-registry \
-        --enable-gateway \
-        --enable-api-portal \
-        --enable-alv \
-        --enable-app-acc \
-        --build-pool-size S2 
-    ```
+        ```shell
+        az spring create --name ${SPRING_APPS_SERVICE} \
+            --resource-group ${RESOURCE_GROUP} \
+            --location ${REGION} \
+            --sku Enterprise \
+            --enable-application-configuration-service \
+            --enable-service-registry \
+            --enable-gateway \
+            --enable-api-portal \
+            --enable-alv \
+            --enable-app-acc \
+            --build-pool-size S2 
+        ```
 
-   > **Note:** Creating the instance will take around **20-30** minutes.
+       > **Note:** Creating the instance will take around **20-30** minutes.
 
 ### Task 2: Configure Log Analytics for Azure Spring Apps
 
@@ -267,7 +269,7 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     az spring app create --name ${FRONTEND_APP} --instance-count 1 --memory 1Gi
     ```
 
-        > At this time, wait until control is passed back to your console before proceeding or hit **enter** key after 5 mins to get the console back. Please check the Portal to make sure ALL services (4 Services & Frontend App) are created. 
+   > At this time, wait until control is passed back to your console before proceeding or hit **enter** key after 5 mins to get the console back. Please check the Portal to make sure ALL services (4 Services & Frontend App) are created. 
 
 1. Several applications require configuration from Application Configuration Service, so create the bindings.
 
@@ -375,6 +377,18 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     echo "https://${PORTAL_URL}"
     ```
 
+>**Congratulations** on completing the Task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com.
+
+
+   <validation step="d4f68229-b5d2-41e0-8393-bb8659eb4f47" />
+   
+   <validation step="d1c4c29b-5415-4cea-9071-8364c56b8a1d" />
+
 ## Summary
+
+In this lab, you have deployed Infrastructure Stack, configured Log Analytics for Azure Spring Apps, Application Configuration Service and Tanzu Build Service, created and binded Applications to Azure Spring Apps Services and configured Spring Cloud Gateway with routing, deployment, access and API exploration
 
 ### You have successfully completed the lab!
