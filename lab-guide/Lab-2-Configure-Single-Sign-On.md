@@ -1,10 +1,17 @@
-## Lab 2: Configure Single Sign-On
+# Lab 2: Configure Single Sign-On
 
 ### Estimated Duration: 30 minutes
 
 ## Overview
 
 In this lab, you will configure Single Sign-On for Spring Cloud Gateway using Microsoft Entra ID.
+
+## Lab Objectives
+
+- Task 1: Register Application with Microsoft Entra ID
+- Task 2: Using an Existing SSO Identity Provider
+- Task 3: Configure Spring Cloud Gateway with SSO
+- Task 4: Update Existing Applications
 
 ### Task 1: Register Application with Microsoft Entra ID
 
@@ -216,4 +223,8 @@ In this lab, you will configure Single Sign-On for Spring Cloud Gateway using Mi
    echo "https://${PORTAL_URL}"
    ```
 
-> Now, click on **Next** in the lab guide section in the bottom right corner to jump to the next exercise instructions.
+## Summary
+
+In this lab, you have registered Application with Microsoft Entra ID, used an Existing SSO Identity Provider, configured Spring Cloud Gateway with SSO and updated Existing Applications.
+
+### You have successfully completed the lab!
