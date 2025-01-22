@@ -122,21 +122,21 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
 
    * Replace ${SPRING_APPS_SERVICE} with **<inject key="Spring App Name" enableCopy="true"/>**
 
-    ```shell
-    az spring create --name ${SPRING_APPS_SERVICE} \
-        --resource-group ${RESOURCE_GROUP} \
-        --location ${REGION} \
-        --sku Enterprise \
-        --enable-application-configuration-service \
-        --enable-service-registry \
-        --enable-gateway \
-        --enable-api-portal \
-        --enable-alv \
-        --enable-app-acc \
-        --build-pool-size S2 
-    ```
+        ```shell
+        az spring create --name ${SPRING_APPS_SERVICE} \
+            --resource-group ${RESOURCE_GROUP} \
+            --location ${REGION} \
+            --sku Enterprise \
+            --enable-application-configuration-service \
+            --enable-service-registry \
+            --enable-gateway \
+            --enable-api-portal \
+            --enable-alv \
+            --enable-app-acc \
+            --build-pool-size S2 
+        ```
 
-   > **Note:** Creating the instance will take around **20-30** minutes.
+       > **Note:** Creating the instance will take around **20-30** minutes.
 
 ### Task 2: Configure Log Analytics for Azure Spring Apps
 
@@ -267,7 +267,7 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     az spring app create --name ${FRONTEND_APP} --instance-count 1 --memory 1Gi
     ```
 
-        > At this time, wait until control is passed back to your console before proceeding or hit **enter** key after 5 mins to get the console back. Please check the Portal to make sure ALL services (4 Services & Frontend App) are created. 
+   > At this time, wait until control is passed back to your console before proceeding or hit **enter** key after 5 mins to get the console back. Please check the Portal to make sure ALL services (4 Services & Frontend App) are created. 
 
 1. Several applications require configuration from Application Configuration Service, so create the bindings.
 
