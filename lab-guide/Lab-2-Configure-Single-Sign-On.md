@@ -59,6 +59,8 @@ In this lab, you will configure Single Sign-On for Spring Cloud Gateway using Mi
    echo ${PORTAL_URL}
    ```
 
+    > **Note**: Copy the values in a notepad for further use.
+
 7. Verify the urls should look similiar to below example urls.
 
  > The `ISSUER_URI` should take the form `https://login.microsoftonline.com/${TENANT_ID}/v2.0`
