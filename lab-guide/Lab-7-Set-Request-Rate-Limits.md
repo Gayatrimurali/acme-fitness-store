@@ -188,6 +188,13 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
 
      ![Output from the Deploy Catalog workflow](Images/final-result.png)
 
+>**Congratulations** on completing the Task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com.
+
+   <validation step="e01d76e9-8ff7-4829-8c6d-ffc5f41c343e" />
+
 ## Summary
 
 In this lab, you have prepared your environment for creating a Storage Account and added Secrets to GitHub Actions.
