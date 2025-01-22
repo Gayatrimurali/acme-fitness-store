@@ -1,4 +1,4 @@
-## Lab 4: Load Application Secrets using Key Vault
+# Lab 4: Load Application Secrets using Key Vault
 
 Duration: 40 minutes
 
@@ -129,61 +129,38 @@ az keyvault set-policy --name ${KEY_VAULT} \
 
 1. To delete Service Connectors and activate applications to load secrets from Azure Key Vault, run the following command in the git bash:
 
-```shell
-az spring connection delete \
-    --resource-group ${RESOURCE_GROUP} \
-    --service ${SPRING_APPS_SERVICE} \
-    --connection ${ORDER_SERVICE_DB_CONNECTION} \
-    --app ${ORDER_SERVICE_APP} \
-    --deployment default \
-    --yes 
-```
+   ```shell
+   az spring connection delete \
+       --resource-group ${RESOURCE_GROUP} \
+       --service ${SPRING_APPS_SERVICE} \
+       --connection ${ORDER_SERVICE_DB_CONNECTION} \
+       --app ${ORDER_SERVICE_APP} \
+       --deployment default \
+       --yes
+   az spring connection delete \
+       --resource-group ${RESOURCE_GROUP} \
+       --service ${SPRING_APPS_SERVICE} \
+       --connection ${CATALOG_SERVICE_DB_CONNECTION} \
+       --app ${CATALOG_SERVICE_APP} \
+       --deployment default \
+       --yes
+   az spring app update --name ${ORDER_SERVICE_APP} \
+       --env "ConnectionStrings__KeyVaultUri=${KEYVAULT_URI}" "AcmeServiceSettings__AuthUrl=https://${GATEWAY_URL}" "DatabaseProvider=Postgres"
+   az spring app update --name ${CATALOG_SERVICE_APP} \
+       --config-file-pattern catalog/default,catalog/key-vault \
+       --env "SPRING_CLOUD_AZURE_KEYVAULT_SECRET_PROPERTY_SOURCES_0_ENDPOINT=${KEYVAULT_URI}" "SPRING_CLOUD_AZURE_KEYVAULT_SECRET_PROPERTY_SOURCES_0_NAME=${KEY_VAULT}" "SPRING_PROFILES_ACTIVE=default,key-vault"
+   az spring app update --name ${IDENTITY_SERVICE_APP} \
+       --config-file-pattern identity/default,identity/key-vault \
+       --env "SPRING_CLOUD_AZURE_KEYVAULT_SECRET_PROPERTY_SOURCES_0_ENDPOINT=${KEYVAULT_URI}" "SPRING_CLOUD_AZURE_KEYVAULT_SECRET_PROPERTY_SOURCES_0_NAME=${KEY_VAULT}" "SPRING_PROFILES_ACTIVE=default,key-vault"
+   az spring app update --name ${CART_SERVICE_APP} \
+       --env "CART_PORT=8080" "KEYVAULT_URI=${KEYVAULT_URI}" "AUTH_URL=https://${GATEWAY_URL}"
+   ```
 
-```shell
-az spring connection delete \
-    --resource-group ${RESOURCE_GROUP} \
-    --service ${SPRING_APPS_SERVICE} \
-    --connection ${CATALOG_SERVICE_DB_CONNECTION} \
-    --app ${CATALOG_SERVICE_APP} \
-    --deployment default \
-    --yes 
-```
-
-```shell
-az spring connection delete \
-    --resource-group ${RESOURCE_GROUP} \
-    --service ${SPRING_APPS_SERVICE} \
-    --connection ${CART_SERVICE_CACHE_CONNECTION} \
-    --app ${CART_SERVICE_APP} \
-    --deployment default \
-    --yes
-```
-
-```shell    
-az spring app update --name ${ORDER_SERVICE_APP} \
-    --env "ConnectionStrings__KeyVaultUri=${KEYVAULT_URI}" "AcmeServiceSettings__AuthUrl=https://${GATEWAY_URL}" "DatabaseProvider=Postgres"
-```
-
-```shell
-az spring app update --name ${CATALOG_SERVICE_APP} \
-    --config-file-pattern catalog/default,catalog/key-vault \
-    --env "SPRING_CLOUD_AZURE_KEYVAULT_SECRET_PROPERTY_SOURCES_0_ENDPOINT=${KEYVAULT_URI}" "SPRING_CLOUD_AZURE_KEYVAULT_SECRET_PROPERTY_SOURCES_0_NAME=${KEY_VAULT}" "SPRING_PROFILES_ACTIVE=default,key-vault"
-```
-
-```shell  
-az spring app update --name ${IDENTITY_SERVICE_APP} \
-    --config-file-pattern identity/default,identity/key-vault \
-    --env "SPRING_CLOUD_AZURE_KEYVAULT_SECRET_PROPERTY_SOURCES_0_ENDPOINT=${KEYVAULT_URI}" "SPRING_CLOUD_AZURE_KEYVAULT_SECRET_PROPERTY_SOURCES_0_NAME=${KEY_VAULT}" "SPRING_PROFILES_ACTIVE=default,key-vault"
-```
-
-```shell    
-az spring app update --name ${CART_SERVICE_APP} \
-    --env "CART_PORT=8080" "KEYVAULT_URI=${KEYVAULT_URI}" "AUTH_URL=https://${GATEWAY_URL}"
-```
-
-   ![](Images/mjv2-27-new.png)
+      ![](Images/mjv2-27-new.png)
     
-   > **Note:** The above commands to delete service connectors and activate applications will take up to **8** minutes. Wait until the command run is successful.
+ > **Note:** If you face any issues with CATALOG SERVICE, please run the command from lab 1, task 5, step 3 and perform the above step again.
+ 
+ > **Note:** The above commands to delete service connectors and activate applications will take up to **8** minutes. Wait until the command run is successful.
     
    > **Note:** After finishing the exercise, be sure not to close the Git Bash window.
     
