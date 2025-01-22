@@ -8,13 +8,6 @@
 - Task 2: Prepare Azure OpenAI
 - Task 3: Build and Deploy Assist app to Azure Spring Apps
 
-### Prerequisites
-- JDK 17
-- Python 3
-- Maven
-- Azure CLI
-- An Azure subscription with access granted to Azure OpenAI (request access to Azure OpenAI [here](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOFA5Qk1UWDRBMjg0WFhPMkIzTzhKQ1dWNyQlQCN0PWcu))
-
 ### Task 1: Prepare the Environment Variables
 
 1. Please navigate to the root folder of this cloned repository.
@@ -74,9 +67,9 @@
     az cognitiveservices account deployment create \
        -g ${RESOURCE_GROUP} \
        -n ${OPENAI_RESOURCE_NAME} \
-       --deployment-name gpt-35-turbo-16k \
-       --model-name gpt-35-turbo-16k \
-       --model-version "0613"  \
+       --deployment-name gpt-35-turbo \
+       --model-name gpt-35-turbo \
+       --model-version "0125"  \
        --model-format OpenAI \
        --sku "Standard" \
        --capacity 1
