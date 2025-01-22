@@ -225,6 +225,13 @@ In this lab, you will configure Single Sign-On for Spring Cloud Gateway using Mi
    echo "https://${PORTAL_URL}"
    ```
 
+>**Congratulations** on completing the Task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com.
+
+   <validation step="1850c55c-be68-48b6-b4e7-4c258113a04c" />
+ 
 ## Summary
 
 In this lab, you have registered Application with Microsoft Entra ID, used an Existing SSO Identity Provider, configured Spring Cloud Gateway with SSO and updated Existing Applications.
