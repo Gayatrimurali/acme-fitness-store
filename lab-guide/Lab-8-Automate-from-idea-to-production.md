@@ -49,7 +49,7 @@
    
    > Search for Azure OpenAI in the Azure Portal and verify if the resource has been created.
 
-      ![A screenshot of the Azure AI services.](./Images/openai-azure-ai-services-new.png)
+      ![A screenshot of the Azure AI services.](./Images/mj16.png)
 
 2. Create the model deployments for `text-embedding-ada-002` and `gpt-35-turbo-16k` in your Azure OpenAI service.
    
@@ -82,22 +82,24 @@
     > - Click on Go to Azure AI Foundry Portal.
     > - Navigate to Deployments from the left pane and verify your deployments.
 
-      ![A screenshot of the Azure AI Studio with no deployments.](./Images/openai-azure-ai-studio-deployments-new-01.png)
+      ![A screenshot of the Azure AI Studio with no deployments.](./Images/mj15.png)
 
-3. Run the below command to update the values in `scripts/setup-ai-env-variables.sh`, 
+      ![A screenshot of the Azure AI Studio with no deployments.](./Images/mj14.png)
+
+4. Run the below command to update the values in `scripts/setup-ai-env-variables.sh`, 
 
       ```bash
         vi setup-ai-env-variables.sh
         source ./setup-ai-env-variables.sh
       ```
 
-    * Navigate to the OpenAI Service you have created and select Keys & Endpoint from the left pane.
+    * Navigate to the OpenAI Service you have created and select **Keys & Endpoint (1)** from the left pane.
       
-    * Copy the Primary Key and Endpoint and paste it in the file.
+    * Copy the **Primary Key (2)** and **Endpoint (3)** and paste it in the file.
     
-         ![A screenshot of the Azure Portal OpenAI instance.](./Images/openaikey-new.png)    
+         ![A screenshot of the Azure AI Studio with no deployments.](./Images/mj13.png) 
     
-4. You can get the endpoint by querying the `cognitiveservices` from Azure CLI, 
+5. You can get the endpoint by querying the `cognitiveservices` from Azure CLI, 
 
     ```bash
        az cognitiveservices account show \
