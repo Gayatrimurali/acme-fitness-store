@@ -17,45 +17,77 @@ In this lab, you will learn how to build and deploy both frontend and backend Sp
 - Automate from idea to production
 - Infuse AI into Fitness Store
 
-## Pre-requisites
+## Pre-Requisites
+
+- Basic Understanding of Spring Boot
+- Frontend-Backend Architecture Knowledge:
 
 ## Architecture Diagram
 
-![acme-fitness](Images/java1.png)
+   ![acme-fitness](Images/java1.png)
 
 
-
-# Getting Started with Lab
-
-1. Once the environment is provisioned, a virtual machine (JumpVM) and lab guide will get loaded in your browser. Use this virtual machine throughout the workshop to perform the lab. You can see the number on the bottom of the lab guide to switch to different exercises of the lab guide.
-
-   ![](Images/cloudlab-vm-guide.png "Lab Environment")
-
-1. To get the lab environment details, select the **Environment Details** tab. The credentials will also be emailed to your registered email address. You can open the Lab Guide on a separate and full window by selecting the **Split Window** from the lower right corner. Also, you can start, stop and restart virtual machines from the **Virtual Machines** tab.
-
-   ![](Images/splitwindow1.png "Lab Environment")
+## Getting Started with the Lab
+Welcome to your Automate-document-processing-using-AzureOpenAI Workshop! We've prepared a seamless environment for you to explore and learn about Azure services. Let's begin by making the most of this experience.
  
-    > You will see the SUFFIX value on the **Environment Details** tab, use it wherever you see SUFFIX or DeploymentID in lab steps.
+## Accessing Your Lab Environment
+ 
+Once you're ready to dive in, your virtual machine and lab guide will be right at your fingertips within your web browser.
 
+  ![OpenAI](images/new-get-start-25-9.png)
 
-## Login to Azure Portal
-1. In the JumpVM, click on the Azure portal shortcut of the Microsoft Edge browser which is created on the desktop.
+ 
+## Exploring Your Lab Resources
+ 
+To get a better understanding of your lab resources and credentials, navigate to the **Environment** tab.
+ 
+  ![OpenAI](images/new-get-start-25-2.png)
+ 
+## Utilizing the Split Window Feature
+ 
+For convenience, you can open the lab guide in a separate window by selecting the **Split Window** button from the Top right corner.
+ 
+  ![OpenAI](images/new-get-start-25-3.png)
 
-   ![](Images/azure-portal.png "Lab Environment")
+## Managing Your Virtual Machine
+ 
+Feel free to start, stop, or restart your virtual machine as needed from the **Resources** tab. Your experience is in your hands!
+
+  ![OpenAI](images/new-get-start-25-4.png)
+
+## Lab Validation
+
+1. After completing the task, hit the **Validate** button under Validation tab integrated within your lab guide. If you receive a success message, you can proceed to the next task, if not, carefully read the error message and retry the step, following the instructions in the lab guide.
+
+   ![Inline Validation](images/new-get-start-25-5.png)
+
+## Lab Guide Zoom In/Zoom Out
+ 
+1. To adjust the zoom level for the environment page, click the **A↕ : 100%** icon located next to the timer in the lab environment.
+
+     ![OpenAI](images/new-get-start-25-6.png)
+
+## Let's Get Started with Azure Portal
+ 
+1. On your virtual machine, click on the **Azure Portal** icon as shown below:
+ 
+    ![OpenAI](images/sc900-image(1).png)
+
+1. On the **Sign in to Microsoft Azure** tab you will see the login screen, in that enter the following email/username, and click on **Next**. 
+
+   * **Email/Username**: <inject key="AzureAdUserEmail"></inject>
    
-1. On the **Sign into Microsoft Azure** tab you will see a login screen, enter the following email/username and then click on **Next**. 
-   * Email/Username: <inject key="AzureAdUserEmail"></inject>
-   
-   ![](Images/image7.png "Enter Email")
+      ![OpenAI](images/sc900-image-1.png)
      
 1. Now enter the following password and click on **Sign in**.
-   * Password: <inject key="AzureAdUserPassword"></inject>
    
-   ![](Images/image8.png "Enter Password")
+   * **Password**: <inject key="AzureAdUserPassword"></inject>
+   
+      ![OpenAI](images/sc900-image-2.png)
      
    > If you see the **Help us protect your account** dialog box, then select the **Skip for now** option.
 
-   ![](Images/MFA.png "Enter Password")
+      ![](Images/MFA.png "Enter Password")
   
 1. If you see the pop-up **Stay Signed in?**, click No
 
@@ -73,7 +105,6 @@ In this lab, you will learn how to build and deploy both frontend and backend Sp
    
 1. Now, click on the **Next** from the lower right corner to move to the next page.
 
-
 ## Support Contact
 The CloudLabs support team is available 24/7, 365 days a year, via email and live chat to ensure seamless assistance at any time. We offer dedicated support channels tailored specifically for both learners and instructors, ensuring that all your needs are promptly and efficiently addressed.
 
@@ -84,4 +115,4 @@ Learner Support Contacts:
   
 Now, click on Next from the lower right corner to move on to the next page.
 
-# Happy Learning!!
+### Happy Learning!!
