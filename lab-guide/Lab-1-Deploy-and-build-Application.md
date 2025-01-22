@@ -51,7 +51,7 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
       vi setup-env-variables.sh
     ```
    
-7. Press **i** key on your keyboard to go to the edit mode and replace the values as given below, press **Ctrl+c** , type **:wq!** and hit enter :
+7. Press **i** key on your keyboard to go to the edit mode and replace the values as given below:
 
    * SubscriptionID: **<inject key="Subscription Id" enableCopy="true"/>**
    * Resource Group: **<inject key="Resource Group Name" enableCopy="true"/>**
@@ -67,7 +67,9 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
       export REGION=eastus                          
     ```
 
-8. Run the following command to log in to Azure.
+8. Press **Ctrl+c** , type **:wq!** and hit enter to save.
+
+9. Run the following command to log in to Azure.
 
     ```shell
       az login
@@ -79,14 +81,14 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
    > - **Password:** <inject key="AzureAdUserPassword"></inject> 
    > - Select **No, Sign in to this app only at stay signed in apps** popup. popup will close  automatically once successful login and proceed with the next command.
 
-9. Run the following command to move back to the acme-fitness-store directory and then set up the environment.
+10. Run the following command to move back to the acme-fitness-store directory and then set up the environment.
   
     ```shell
       chmod +x ./setup-env-variables.sh
       source ./setup-env-variables.sh
     ``` 
   
-10. Run the following commands to get the list of subscriptions and to set your subscription.
+11. Run the following commands to get the list of subscriptions and to set your subscription.
 
     * Replace ${SUBSCRIPTION} with the SubscriptionID: **<inject key="Subscription Id" enableCopy="true"/>**
 
@@ -97,7 +99,7 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     
        ![](Images/mjv2-4.png)
    
-11. Now, run the following command to set your default resource group name and cluster name.
+12. Now, run the following command to set your default resource group name and cluster name.
 
    * Replace $Resource Group with **<inject key="Resource Group Name" enableCopy="true"/>**
    * Replace ${REGION} with **<inject key="Region" enableCopy="true"/>**
@@ -112,13 +114,13 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     
        > **Note:** Make sure you are in the **scripts** directory.
 
-12. Run the following command to accept the terms:
+13. Run the following command to accept the terms:
 
     ```shell
     az term accept --publisher vmware-inc --product azure-spring-cloud-vmware-tanzu-2 --plan asa-ent-hr-mtr
     ```
 
-13. Run the following command to create the instance of Azure Spring Apps Enterprise.
+14. Run the following command to create the instance of Azure Spring Apps Enterprise.
 
    * Replace ${SPRING_APPS_SERVICE} with **<inject key="Spring App Name" enableCopy="true"/>**
 
