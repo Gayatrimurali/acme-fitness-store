@@ -238,9 +238,9 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
 
     > - Should show something like:
 
-        ```
-        ./source-code/acme-fitness-store/azure-spring-apps-enterprise/scripts
-        ```
+    ```shell
+    ./source-code/acme-fitness-store/azure-spring-apps-enterprise/scripts
+    ```
 
 1. Create a custom builder in Tanzu Build Service using the Azure CLI.
 
