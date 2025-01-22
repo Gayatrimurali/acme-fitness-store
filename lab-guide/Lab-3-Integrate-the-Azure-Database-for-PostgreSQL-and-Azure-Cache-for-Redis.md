@@ -273,6 +273,13 @@ In this task, you will update the affected applications to use the databases and
 
    > **Note:** After finishing the exercise, be sure not to close the Git Bash window.
 
+>**Congratulations** on completing the Task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com.
+
+   <validation step="31e45cf1-5922-4566-be5a-b8ebc13dd8b8" />
+
 ## Summary
 
 In this lab, you have prepare your environment , created Service Connectors, updated the Applications and viewed the persisted data.
