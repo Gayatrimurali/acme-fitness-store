@@ -377,6 +377,16 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
     echo "https://${PORTAL_URL}"
     ```
 
+>**Congratulations** on completing the Task! Now, it's time to validate it. Here are the steps:
+> - Hit the Validate button for the corresponding task. If you receive a success message, you have successfully validated the lab. 
+> - If not, carefully read the error message and retry the step, following the instructions in the lab guide.
+> - If you need any assistance, please contact us at cloudlabs-support@spektrasystems.com.
+
+
+   <validation step="d4f68229-b5d2-41e0-8393-bb8659eb4f47" />
+   
+   <validation step="d1c4c29b-5415-4cea-9071-8364c56b8a1d" />
+
 ## Summary
 
 In this lab, you have deployed Infrastructure Stack, configured Log Analytics for Azure Spring Apps, Application Configuration Service and Tanzu Build Service, created and binded Applications to Azure Spring Apps Services and configured Spring Cloud Gateway with routing, deployment, access and API exploration
