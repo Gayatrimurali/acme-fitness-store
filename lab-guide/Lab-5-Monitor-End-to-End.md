@@ -171,7 +171,7 @@ In this lab, you will explore live application metrics and query logs to know th
 
       >**Note:** If you see the message "The query was stopped", then please wait for a few minutes and try again as there might be a chance that services are still being deployed.
    
-      ![](Images/mjv2-61.png)
+      ![](Images/mjv2-61-1.png)
 
 5. Click on `+` **(1)** to create the new query. Now paste the below Kusto query **(2)** and click on **Run (3)** to see `catalog-service` application logs:
 
