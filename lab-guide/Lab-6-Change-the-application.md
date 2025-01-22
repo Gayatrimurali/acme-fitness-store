@@ -9,6 +9,8 @@ In this exercise, you will be updating the source code of the application and th
 ## Lab Objectives
 
 - Task 1: change the Application Code and Update Settings
+- Task 2: Spring Cloud Gateway Rate Limit Filter (Read-only)
+- Task 3: Update Spring Cloud Gateway Routes
 
 ### Task 1: change the Application Code and Update Settings
 
@@ -125,5 +127,8 @@ When the limit is exceeded, the response will fail with `429 Too Many Requests` 
    
    ![](Images/L7-t3-s1.png) 
 
+## Summary 
 
-> Now, click on **Next** in the lab guide section in the bottom right corner to jump to the next exercise instructions.
+In this lab, you have changed the Application Code and Update Settings and updated Spring Cloud Gateway Routes
+
+### You have succesfully completed the lab!
