@@ -110,11 +110,11 @@ In this lab, you will explore live application metrics and query logs to know th
 
 3. From the left panel, navigate to the `Application Map` blade under Investigate and then select the time filter as **Last 4 hours**.
 
-      ![](Images/mjv2-50.png)
+      ![](Images/mj1.png)
    
 4. From the left panel, navigate to the `Performance` blade under Investigate and then click on **Operations**.
 
-      ![](Images/mjv2-51.png)
+      ![](Images/mj2.png)
 
 5. Now, navigate to the `Performance/Dependencies` blade; you can see the performance number for dependencies:
 
@@ -122,17 +122,17 @@ In this lab, you will explore live application metrics and query logs to know th
 
 6. Navigate to the `Performance/Roles` blade. You can see the performance metrics for individual instances or roles:
 
-      ![](Images/mjv2-53.png)
+      ![](Images/mj17.png)
          
 7. Now, from the left panel, navigate to the `Failures` blade under Investigate and then select the `Exceptions` panel. You can see a collection of exceptions:
 
-      ![](Images/mjv2-54.png)
+      ![](Images/mj3.png)
    
 8. Now, from the left panel, navigate to the `Metrics` blade under Monitoring, where you can see metrics contributed by Spring Boot apps, Spring Cloud modules, and dependencies. The chart below shows `http_server_requests` and `Heap Memory Used`.
 
-      ![](Images/mjv2-55.png)
+    ![](Images/mj4.png)
 
-      ![](Images/mjv2-56.png)
+    ![](Images/mj5.png)
 
       > **Note:**  Spring Boot registers a lot of core metrics: JVM, CPU, Tomcat, Logback,...The Spring Boot auto-configuration enables the instrumentation of requests handled by Spring MVC. The REST controllers `ProductController`, and `PaymentController` have been instrumented by the `@Timed` Micrometer annotation at the class level.
 
@@ -140,12 +140,10 @@ In this lab, you will explore live application metrics and query logs to know th
    * @Timed: `store.products`
 
 9. You can see these custom metrics in the `Metrics` blade:
-
-      ![](Images/mjv2-57.png)
    
 10. Now, from the left panel, navigate to the `Live Metrics` blade under Investigate - you can see live metrics on screen with low latencies < 1 second:
 
-    ![](Images/mjv2-60.png)
+      ![](Images/mj6.png)
 
 ### Task 6: Start monitoring ACME Fitness Store's logs and metrics in Azure Log Analytics
 
@@ -155,11 +153,11 @@ In this lab, you will explore live application metrics and query logs to know th
 
 2. Under the Log Analytics Workspaces page, select the **Log-analytics-workspace** which was previously created.
    
-      ![](Images/Ex5-T6-S2.png)
+      ![](Images/mj7.png)
    
 3. On the Log Analytics page, select `Logs` blade **(1)** under General and close the default query page by clicking on `X` **(2)** in the top right corner.
 
-      ![](Images/log-welcome.png)
+      ![](Images/mj8.png)
 
 4. In the **Logs** blade (1), paste the below Kusto query **(2)** and click on **Run (3)** to see the application logs:
 
