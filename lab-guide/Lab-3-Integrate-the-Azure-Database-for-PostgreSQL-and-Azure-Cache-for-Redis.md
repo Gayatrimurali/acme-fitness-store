@@ -24,13 +24,13 @@ pwd
   vi setup-db-env-variables.sh
 ```
 
-4. Update the following variables in the setup-db-env-variables.sh file by replacing the SUFFIX value with **<inject key="DeploymentID" enableCopy="true" />** and **Save** it using **Ctrl+S** key and then **Close** the file.
+4. Update the following variables in the setup-db-env-variables.sh file by replacing the value and **Save** it by using **escape** key and then type **:wq** press **enter**.
 
 ```shell
-export AZURE_CACHE_NAME=change-me                   # Unique name for Azure Cache for Redis Instance
-export POSTGRES_SERVER=change-me                    # Unique name for Azure Database for PostgreSQL Flexible Server
-export POSTGRES_SERVER_USER=change-name             # Postgres server username to be created in next steps
-export POSTGRES_SERVER_PASSWORD=change-name         # Postgres server password to be created in next steps
+export AZURE_CACHE_NAME=azure-cache-<inject key="DeploymentID" enableCopy="false" />                  # Unique name for Azure Cache for Redis Instance
+export POSTGRES_SERVER=acmefitnessdb<inject key="DeploymentID" enableCopy="false" />                   # Unique name for Azure Database for PostgreSQL Flexible Server
+export POSTGRES_SERVER_USER=dbadmin             # Postgres server username to be created in next steps
+export POSTGRES_SERVER_PASSWORD=Password.1!!         # Postgres server password to be created in next steps
 ```  
    ![](Images/Ex3-T1-S3.png)
    
@@ -142,7 +142,6 @@ az spring connection create postgres-flexible \
     --database ${CATALOG_SERVICE_DB} \
     --client-type springboot \
     --system-identity
-    --yes
 ```
 
 > Note: When the above command is run on iOS, it will require:

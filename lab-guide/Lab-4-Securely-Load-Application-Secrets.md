@@ -28,11 +28,13 @@ export KEYVAULT_URI=$(az keyvault show --name ${KEY_VAULT} \
     -o tsv)
 ```
 
-3. Login to azure portal and search for keyvault created, click on keyvault and on the left menu click on **Settings > Access configuration** .
+3. Login to azure portal and search for keyvault created, click on keyvault and on the left menu click on **Settings > Access configuration**.
    
-4. Select the **Vault Access Policy**, scroll down click on **Apply**. select the **Access Policies** > click on **create** and select all the checkboxes in permission tab. click on **Next**.
+4. Select the **Vault Access Policy**, scroll down click on **Apply**. select the **Access Policies** > click on **+ Create** and select all the checkboxes in permission tab. click on **Next**.
 
-5. In the principle tab search for **Azure Username/Email**: <inject key="AzureAdUserEmail"></inject>, Select the user account and click on **Next** twice. click on **Create** button. 
+> **Note**: If you don't see Create option, refresh the azure portal browser after sometime you will be able to see that.
+
+5. In the principle tab search for **Azure Username/Email**: <inject key="AzureAdUserEmail"></inject>, Select the user account and click on **Next** twice. Click on **Create** button. 
 
 6.  To store database connection secrets in Key Vault, run the following command.
 
