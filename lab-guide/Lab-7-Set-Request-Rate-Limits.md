@@ -36,22 +36,23 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
 
 4. Press **i** to enter the below information and then press **Ctrl + C** and **:wq** to save.
 
+5. Run the below command to export the storage account
+
     ```shell
-    export STORAGE_RESOURCE_GROUP='change-me'      # different resource group from previous steps
-    export STORAGE_ACCOUNT_NAME='change-me'        # choose a name for your storage account
+    export STORAGE_RESOURCE_GROUP=''      
+    export STORAGE_ACCOUNT_NAME=''        
     ```
+            
+   - Replace STORAGE_RESOURCE_GROUP with Modernize-java-apps
+   - Replace STORAGE_ACCOUNT_NAME with storage<inject key="DeploymentID"></inject>
 
-  > **Note:** Please provide resource group and storage account an unique name.
-
-  > **Note:** Storage account name must be between 3 and 24 characters in length and use numbers and lower-case letters only.
-
-5. Then, set the environment.
+6. Then, set the environment.
 
     ```shell
     source ./setup-storage-env-variables.sh
     ```
 
-6. Create a resource group to hold the Storage Account.
+7. Create a resource group to hold the Storage Account.
 
     ```shell
     az group create \
@@ -59,7 +60,9 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
       --location ${REGION}
     ```
 
-7. Create a Storage Account in resource group.
+      > **Note:**  Replace STORAGE_RESOURCE_GROUP with **Modernize-java-apps** and region with **<inject key="Region" enableCopy="true"/>**
+
+8. Create a Storage Account in resource group.
 
     ```shell
     az storage account create \
@@ -70,7 +73,9 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
       --kind StorageV2
     ```
 
-8. Create a Storage Container within the Storage Account.
+      > **Note:** Update the values for ${STORAGE_ACCOUNT_NAME}, ${STORAGE_RESOURCE_GROUP} and ${REGION}.
+
+9. Create a Storage Container within the Storage Account.
 
     ```shell
     az storage container create \
@@ -79,7 +84,9 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
         --auth-mode login
     ```
 
-9. Create a service principal with enough scope/role to manage your Azure Spring Apps instance.
+      > **Note:** Update the values for ${STORAGE_ACCOUNT_NAME}.
+
+10. Create a service principal with enough scope/role to manage your Azure Spring Apps instance.
 
     ```shell
     az ad sp create-for-rbac --name "change-me" \
@@ -88,7 +95,9 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
        --sdk-auth
     ```
 
-    >**Note:** Make the name of the service principle something you will recognize.
+      
+    > **Note:** Replace SubscriptionID: **<inject key="Subscription Id" enableCopy="true"/>**
+    > **Note:** Make the name of the service principle something you will recognize.
 
 9. Copy the Result and save it for later use.
 
@@ -114,11 +123,77 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
 
       > **Note:** If you don't have an account for GitHub, please sign up.
 
-1. After the login, go to [https://github.com/CloudLabsAI-Azure/acme-fitness-store-v2](https://github.com/CloudLabsAI-Azure/acme-fitness-store-v2) and click on `Fork`.
+1. After the login, go to [https://github.com/Azure-Samples/acme-fitness-store.git](https://github.com/Azure-Samples/acme-fitness-store.git) and click on `Fork`.
 
      ![](Images/L8-t1-s2.png)
    
-1. On the Create a new fork page, click on Create fork. 
+1. On the Create a new fork page, click on **Create fork**. 
+
+1. Once the repository has been forked, navigate to `.github/workflows/catalog.yml` path and replace the existing code with the below code:
+
+     ```yml
+     name: Deploy Catalog
+            on:
+              workflow_dispatch:
+                inputs: { }
+              push:
+                branches:
+                  - Azure
+                paths:
+                  - 'apps/acme-catalog/**'
+            env:
+              SPRING_APPS_SERVICE: ${{ secrets.SPRING_APPS_SERVICE }}
+              RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
+              KEY_VAULT: ${{ secrets.KEY_VAULT }}
+              CATALOG_SERVICE_APP: catalog-service
+            
+            permissions:
+                  id-token: write
+                  contents: read
+            
+            jobs:
+              build:
+                runs-on: ubuntu-latest
+                defaults:
+                  run:
+                    working-directory: apps/acme-catalog
+                steps:
+                  - uses: actions/checkout@v3
+                  - name: Set up JDK 17
+                    uses: actions/setup-java@v3
+                    with:
+                      java-version: '17'
+                      distribution: 'adopt'
+                  - name: Validate Gradle wrapper
+                    uses: gradle/wrapper-validation-action@v1
+                  - name: Build with Gradle
+                    uses: gradle/gradle-build-action@v2
+                    with:
+                      arguments: build -x test
+                      build-root-directory: apps/acme-catalog
+                  - uses: azure/login@v2
+                    with:
+                      creds: ${{ secrets.AZURE_CREDENTIALS }}
+                      enable-AzPSSession: true
+                
+                  - name: Azure CLI script
+                    uses: azure/cli@v2
+                    with:
+                      azcliversion: latest
+                      inlineScript: |
+                        az account show
+                  - name: Set up Azure Spring Extension
+                    run: az extension add --name spring
+                  - name: Deploy Catalog
+                    run: |
+                       az spring app deploy \
+                        --name ${CATALOG_SERVICE_APP} \
+                        --resource-group "$RESOURCE_GROUP" \
+                        --service "$SPRING_APPS_SERVICE" \
+                        --config-file-pattern catalog/default \
+                        --build-env BP_JVM_VERSION=17 \
+                        --source-path ./
+    ```
 
 1. Now you're going to add the secrets to your repo.
 
@@ -161,9 +236,9 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
    | `OIDC_CLIENT_ID` | use the `CLIENT_ID` |
    | `OIDC_CLIENT_SECRET` | use the `CLIENT_SECRET`|
    | `OIDC_ISSUER_URI` | use the `ISSUER_URI`|
+   | `SPRING_APPS_SERVICE` | use the **`azure-spring-apps-<inject key="DeploymentID"></inject>`**|
  
       > **Note**: For the values of `OIDC_JWK_SET_URI`, `OIDC_CLIENT_ID`, `OIDC_CLIENT_SECRET`, `OIDC_ISSUER_URI`, enter the values you have copied in your text editor in Lab 2.
-
 
 1. Add the secret `TF_BACKEND_CONFIG` to GitHub Actions with the value replacing `${STORAGE_ACCOUNT_NAME}` with and `${STORAGE_RESOURCE_GROUP}` with the resource group.
 

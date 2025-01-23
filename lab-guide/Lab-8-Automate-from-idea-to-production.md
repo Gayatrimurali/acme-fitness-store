@@ -28,8 +28,8 @@
   - OPENAI_RESOURCE_NAME: **my-openai-<inject key="Deployment ID" enableCopy="false"/>**
   - SPRING_AI_AZURE_OPENAI_ENDPOINT="your_azure_openai_endpoint" (will be adding it once the OPENAI service is deployed)
   - SPRING_AI_AZURE_OPENAI_API_KEY="your_api_key" (will be adding it once the OPENAI service is deployed)
-  - SPRING_AI_AZURE_OPENAI_MODEL: **gpt-35-turbo**
-  - SPRING_AI_AZURE_OPENAI_EMBEDDINGMODEL: **text-embedding-ada-002**
+  - SPRING_AI_AZURE_OPENAI_MODEL: ""
+  - SPRING_AI_AZURE_OPENAI_EMBEDDINGMODEL: ""
 
 ### Task 2: Prepare Azure OpenAI 
 
@@ -51,7 +51,7 @@
 
       ![A screenshot of the Azure AI services.](./Images/mj16.png)
 
-2. Create the model deployments for `text-embedding-ada-002` and `gpt-35-turbo-16k` in your Azure OpenAI service.
+2. Create the model deployments for `text-embedding-ada-002` and `gpt-35-turbo` in your Azure OpenAI service.
    
     ```bash
     az cognitiveservices account deployment create \
