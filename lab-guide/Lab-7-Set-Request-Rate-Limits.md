@@ -240,7 +240,6 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
  
       > **Note**: For the values of `OIDC_JWK_SET_URI`, `OIDC_CLIENT_ID`, `OIDC_CLIENT_SECRET`, `OIDC_ISSUER_URI`, enter the values you have copied in your text editor in Lab 2.
 
-
 1. Add the secret `TF_BACKEND_CONFIG` to GitHub Actions with the value replacing `${STORAGE_ACCOUNT_NAME}` with and `${STORAGE_RESOURCE_GROUP}` with the resource group.
 
    ```text
