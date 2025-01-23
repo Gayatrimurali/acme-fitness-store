@@ -51,7 +51,7 @@
 
       ![A screenshot of the Azure AI services.](./Images/mj16.png)
 
-2. Create the model deployments for `text-embedding-ada-002` and `gpt-35-turbo-16k` in your Azure OpenAI service.
+2. Create the model deployments for `text-embedding-ada-002` and `gpt-35-turbo` in your Azure OpenAI service.
    
     ```bash
     az cognitiveservices account deployment create \
