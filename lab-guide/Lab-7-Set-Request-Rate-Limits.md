@@ -126,7 +126,7 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
    
 1. On the Create a new fork page, click on **Create fork**. 
 
-1. Once the repository has been forked, navigate to `.github/workflows/catalog.yml` and replace the existing code with the below code:
+1. Once the repository has been forked, navigate to `.github/workflows/catalog.yml` path and replace the existing code with the below code:
 
      ```yml
      name: Deploy Catalog
