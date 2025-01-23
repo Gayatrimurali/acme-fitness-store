@@ -37,13 +37,12 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
 4. Press **i** to enter the below information and then press **Ctrl + C** and **:wq** to save.
 
     ```shell
-    export STORAGE_RESOURCE_GROUP='change-me'      # different resource group from previous steps
-    export STORAGE_ACCOUNT_NAME='change-me'        # choose a name for your storage account
+    export STORAGE_RESOURCE_GROUP=''      
+    export STORAGE_ACCOUNT_NAME=''        
     ```
-
-  > **Note:** Please provide resource group and storage account an unique name.
-
-  > **Note:** Storage account name must be between 3 and 24 characters in length and use numbers and lower-case letters only.
+            
+            - Replace STORAGE_RESOURCE_GROUP with Modernize-java-apps
+            - Replace STORAGE_ACCOUNT_NAME with storage<inject key="DeploymentID"></inject>
 
 5. Then, set the environment.
 
@@ -59,6 +58,8 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
       --location ${REGION}
     ```
 
+      > **Note:**  Replace STORAGE_RESOURCE_GROUP with **Modernize-java-apps** and region with **<inject key="Region" enableCopy="true"/>**
+
 7. Create a Storage Account in resource group.
 
     ```shell
@@ -70,6 +71,8 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
       --kind StorageV2
     ```
 
+      > **Note:** Update the values for ${STORAGE_ACCOUNT_NAME}, ${STORAGE_RESOURCE_GROUP} and ${REGION}.
+
 8. Create a Storage Container within the Storage Account.
 
     ```shell
@@ -78,6 +81,8 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
         --account-name ${STORAGE_ACCOUNT_NAME} \
         --auth-mode login
     ```
+
+      > **Note:** Update the values for ${STORAGE_ACCOUNT_NAME}.
 
 9. Create a service principal with enough scope/role to manage your Azure Spring Apps instance.
 
@@ -88,7 +93,8 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
        --sdk-auth
     ```
 
-    >**Note:** Make the name of the service principle something you will recognize.
+    > **Note:** Replace SubscriptionID: **<inject key="Subscription Id" enableCopy="true"/>**
+    > **Note:** Make the name of the service principle something you will recognize.
 
 9. Copy the Result and save it for later use.
 
