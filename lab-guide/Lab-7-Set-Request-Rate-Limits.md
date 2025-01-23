@@ -120,7 +120,7 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
 
       > **Note:** If you don't have an account for GitHub, please sign up.
 
-1. After the login, go to [https://github.com/CloudLabsAI-Azure/acme-fitness-store-v2](https://github.com/CloudLabsAI-Azure/acme-fitness-store-v2) and click on `Fork`.
+1. After the login, go to [https://github.com/CloudLabsAI-Azure/acme-fitness-store-v2](https://github.com/Azure-Samples/acme-fitness-store.git) and click on `Fork`.
 
      ![](Images/L8-t1-s2.png)
    
