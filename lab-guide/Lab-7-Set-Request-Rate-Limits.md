@@ -36,6 +36,8 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
 
 4. Press **i** to enter the below information and then press **Ctrl + C** and **:wq** to save.
 
+5. Run the below command to export the storage account
+
     ```shell
     export STORAGE_RESOURCE_GROUP=''      
     export STORAGE_ACCOUNT_NAME=''        
@@ -44,13 +46,13 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
    - Replace STORAGE_RESOURCE_GROUP with Modernize-java-apps
    - Replace STORAGE_ACCOUNT_NAME with storage<inject key="DeploymentID"></inject>
 
-5. Then, set the environment.
+6. Then, set the environment.
 
     ```shell
     source ./setup-storage-env-variables.sh
     ```
 
-6. Create a resource group to hold the Storage Account.
+7. Create a resource group to hold the Storage Account.
 
     ```shell
     az group create \
@@ -60,7 +62,7 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
 
       > **Note:**  Replace STORAGE_RESOURCE_GROUP with **Modernize-java-apps** and region with **<inject key="Region" enableCopy="true"/>**
 
-7. Create a Storage Account in resource group.
+8. Create a Storage Account in resource group.
 
     ```shell
     az storage account create \
@@ -73,7 +75,7 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
 
       > **Note:** Update the values for ${STORAGE_ACCOUNT_NAME}, ${STORAGE_RESOURCE_GROUP} and ${REGION}.
 
-8. Create a Storage Container within the Storage Account.
+9. Create a Storage Container within the Storage Account.
 
     ```shell
     az storage container create \
@@ -84,7 +86,7 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
 
       > **Note:** Update the values for ${STORAGE_ACCOUNT_NAME}.
 
-9. Create a service principal with enough scope/role to manage your Azure Spring Apps instance.
+10. Create a service principal with enough scope/role to manage your Azure Spring Apps instance.
 
     ```shell
     az ad sp create-for-rbac --name "change-me" \
@@ -93,6 +95,7 @@ In this lab, you will use Spring Cloud Gateway filters to apply rate limiting to
        --sdk-auth
     ```
 
+      
     > **Note:** Replace SubscriptionID: **<inject key="Subscription Id" enableCopy="true"/>**
     > **Note:** Make the name of the service principle something you will recognize.
 
