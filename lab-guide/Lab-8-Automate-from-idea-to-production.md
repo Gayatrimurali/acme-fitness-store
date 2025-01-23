@@ -1,4 +1,4 @@
-# Lab 8: Infuse AI into Fitness Store
+# Lab 8: Infuse AI into Fitness Store [READ-ONLY]
 
 ### Estimated Duration: 30 minutes
 
