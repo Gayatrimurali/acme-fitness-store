@@ -171,6 +171,8 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
 
     > **Note:** Replace {SUFFIX} with <inject key="DeploymentID"></inject>
 
+    > **Note:** Copy the Resource IDs and paste it in a notepad.
+
    > **Note:** If you face any error while running the above command, please log in to azure and check the log analytics workspace name in resource group and replace the name in **setup-env-variables.sh** file.
 
 3. Configure diagnostic settings for the Azure Spring Apps Service.
@@ -216,6 +218,8 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
              }
            ]'
     ```
+
+    > **Note:** Replace the Resource IDs fetched in the previous task for ${SPRING_APPS_RESOURCE_ID} and ${LOG_ANALYTICS_RESOURCE_ID}.
 
    > **Note**: For Git Bash users, this command may fail when resource IDs are misinterpreted as file paths because they begin with `/`. 
    > - If the above command fails, try setting MSYS_NO_PATHCONV using:
