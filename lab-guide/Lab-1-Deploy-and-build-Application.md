@@ -159,15 +159,17 @@ In this task, you will try to deploy a very simple hello-world Spring Boot app t
 
     ```shell
     az spring show \
-        --name azure-spring-apps-1573570 \
+        --name azure-spring-apps-{SUFFIX} \
         --resource-group Modernize-java-apps \
         --query id --output tsv
 
     az monitor log-analytics workspace show \
         --resource-group Modernize-java-apps \
-        --workspace-name azure-spring-apps-1573570 \
+        --workspace-name azure-spring-apps-{SUFFIX} \
         --query id --output tsv
     ```
+
+    > **Note:** Replace {SUFFIX} with <inject key="DeploymentID"></inject>
 
    > **Note:** If you face any error while running the above command, please log in to azure and check the log analytics workspace name in resource group and replace the name in **setup-env-variables.sh** file.
 
